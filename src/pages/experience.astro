@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="Experience | Sam Packer" sideBarActiveItemID="experience">
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Summary</div>
+    </div>
+
+    <div class="mb-10 text-justify">
+        From streamlining complex systems to designing creative solutions, I focus on using technology to solve
+        real-world problems. Whether leading the migration of development workflows to GitHub, building and maintaining
+        reliable systems for more efficient information systems, or designing automation tools that simplify business
+        tasks, I bring a hands-on, problem-solving approach to every challenge. My experience spans technical recovery
+        efforts that saved businesses thousands, creating data-driven strategies to guide better decisions, and even
+        building websites and social media campaigns that connect people and amplify impact. With a passion for
+        innovation and a focus on results, I’m dedicated to building solutions that make life easier, more efficient,
+        and more engaging.
+    </div>
+
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Education</div>
+    </div>
+
+    <div class="time-line-container grid gap-4 mb-10">
+        <TimeLineElement
+                title="B.B.A. in Computer Information Systems"
+                subtitle="August 2021 to May 2025 at West Texas A&M University, Canyon, TX"
+        />
+    </div>
+
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Professional Experience</div>
+    </div>
+
+    <div class="time-line-container mb-10">
+        <TimeLineElement
+                title="Jr. Process Optimization Developer"
+                subtitle="From February 2023 to Present at Education Credit Union, Amarillo, TX"
+        >
+            I led a migration to GitHub, which helped improve collaboration and teamwork across the organization. I
+            designed and implemented CI/CD pipelines with GitHub Actions to make deployments more efficient. I also
+            created automation workflows with APIs to streamline repetitive tasks and boost productivity. Using Python,
+            I analyzed data to support better business decisions, and I developed processes for extracting and
+            transforming SQL data to simplify reporting and analytics. Additionally, I built a program to handle mass
+            file deletions more effectively, improving overall system performance.
+        </TimeLineElement>
+        <TimeLineElement
+                title="Student Worker"
+                subtitle="From August 2021 to May 2025 at West Texas A&M University, Canyon, TX"
+        >
+            I assisted in managing a fleet of gaming computers, ensuring reliable performance and minimizing technical
+            issues to create a better user experience. I also led disaster recovery efforts for a bowling center,
+            implementing effective solutions to safeguard operations and prevent financial losses. These experiences
+            allowed me to develop a hands-on approach to troubleshooting and a strong ability to handle critical
+            situations effectively.
+        </TimeLineElement>
+        <TimeLineElement
+                title="Webmaster"
+                subtitle="From April 2016 to May 2019 at Winds Across the Bay, El Cerrito, CA"
+        >
+            I designed a new website from the ground up, creating a more engaging and user-friendly experience while
+            improving search engine visibility. I also managed social media platforms, successfully growing audience
+            engagement and expanding the organization's reach. In addition, I designed event flyers that helped
+            streamline marketing efforts, reducing outsourcing costs. To support operations, I engineered a new hosting
+            solution that lowered expenses while maintaining reliability. These efforts allowed me to combine creativity
+            with technical expertise to drive meaningful results.
+        </TimeLineElement>
+    </div>
+
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Extracurriculars and Volunteer Experience</div>
+    </div>
+
+
+    <div class="time-line-container mb-10">
+        <TimeLineElement
+                title="Intern"
+                subtitle="From January 2018 to March 2020 at The Center for Independent Living, Alameda, CA"
+        >
+            I managed a technology help service designed for seniors with disabilities, focusing on
+            providing accessible and effective support. I took the initiative to expand the program's outreach, ensuring
+            that more individuals could benefit from the services offered. Additionally, I conducted in-depth research
+            to identify the best assistive technology products for individuals with disabilities, allowing the program
+            to better meet their needs and enhance their access to essential tools.
+        </TimeLineElement>
+        <TimeLineElement
+                title="Teacher Assistant"
+                subtitle="From May 2019 to August 2019 at Albany Senior Center, Albany, CA"
+        >
+            I directed a technology class for seniors, focusing on fostering their confidence and skills in using
+            digital
+            technology. I taught essential skills such as using social media to keep in contact with family and loved
+            ones. I also took the lead in reprovisioning non-functional computers at the organization, ensuring
+            they were accessible to seniors, thereby supporting their engagement with technology in a meaningful way.
+        </TimeLineElement>
+    </div>
+
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Certifications</div>
+    </div>
+
+    <ul class="list-disc mx-6 mb-10 grid gap-2">
+        <li>
+            <a href="#" target="_blank">Meta Front-End Web Developer Professional Certification</a>
+        </li>
+        <li>
+            <a href="#" target="_blank">IBM AI Product Manager Professional Certification</a>
+        </li>
+    </ul>
+
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Skills</div>
+    </div>
+
+    <div>
+        <div class="text-2xl w-full font-bold">Technical</div>
+    </div>
+
+    <ul class="list-disc md:columns-5 columns-2 mx-6">
+        <li>Java</li>
+        <li>C#</li>
+        <li>Python</li>
+        <li>MySQL</li>
+        <li>MongoDB</li>
+        <li>Redis</li>
+        <li>SCRUM</li>
+        <li>Agile</li>
+        <li>LEAN</li>
+
+    </ul>
+
+    <div class="divider"></div>
+
+    <div>
+        <div class="text-2xl w-full font-bold">Software / Frameworks</div>
+    </div>
+
+    <ul class="list-disc md:columns-5 columns-2 mx-6">
+        <li>HTML / CSS</li>
+        <li>JavaScript</li>
+        <li>NodeJS</li>
+        <li>ReactJS</li>
+        <li>AngularJS</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div>
+        <div class="text-2xl w-full font-bold">System Administration</div>
+    </div>
+
+    <ul class="list-disc md:columns-3 columns-2 mx-6">
+        <li>Ubuntu / Debian</li>
+        <li>AWS</li>
+        <li>Hetzner</li>
+        <li>Google Workspace</li>
+        <li>Windows Server</li>
+        <li>Active Directory and Group Policy</li>
+    </ul>
+</BaseLayout>
