@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Contact | Sam Packer" sideBarActiveItemID="contact">
+    <h2 class="text-3xl font-bold mb-6">Contact</h2>
+    <p class="text-base">Thank you for reaching out! You may contact me using this form below. I will get back to you
+        shortly. You may also contact me on LinkedIn as well.</p>
+    <form method="POST" id="contactForm">
+        <div class="form-control">
+            <label class="label" for="name">
+                <span class="label-text">Your Name</span>
+            </label>
+            <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="input input-bordered w-full"
+                    placeholder="Enter your name"
+                    required
+            />
+        </div>
+        <div class="form-control">
+            <label class="label" for="email">
+                <span class="label-text">Your Email</span>
+            </label>
+            <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="input input-bordered w-full"
+                    placeholder="Enter your email"
+                    required
+            />
+        </div>
+        <div class="form-control">
+            <label class="label" for="message">
+                <span class="label-text">Your Message</span>
+            </label>
+            <textarea
+                    id="message"
+                    name="message"
+                    class="textarea textarea-bordered w-full"
+                    placeholder="Enter your message"
+                    rows="5"
+                    required
+            ></textarea>
+        </div>
+        <div transition:persist transition:persist-props class="cf-turnstile mt-3" id="turnstile-container"></div>
+        <div class="form-control">
+            <button type="submit" class="btn btn-secondary mt-3">Send Message</button>
+        </div>
+        <div id="result" class="mt-3"></div>
+    </form>
+</BaseLayout>
+
+<script is:inline>
+    turnstile.ready(function () {
+        turnstile.render(document.getElementById('turnstile-container'), {
+            sitekey: "0x4AAAAAAA6W-c17eoXkcFQO",
+        });
+    });
+
+    document.getElementById("contactForm").addEventListener('submit', function (e) {
+        const formData = new FormData(document.getElementById("contactForm"));
+        e.preventDefault();
+
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        document.getElementById("result").classList.add("alert", "alert-info");
+        document.getElementById("result").innerHTML = "Please wait..."
+
+        fetch('https://contact-form.telesphoreo.workers.dev', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status === 200) {
+                    document.getElementById("result").classList.remove("alert-info");
+                    document.getElementById("result").classList.add("alert-success");
+                    document.getElementById("result").innerHTML = json.message;
+                } else {
+                    console.log(response);
+                    document.getElementById("result").innerHTML = json.message;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                document.getElementById("result").classList.remove("alert-info");
+                document.getElementById("result").classList.add("alert-danger");
+                document.getElementById("result").innerHTML = "Something went wrong!";
+            })
+            .then(function () {
+                document.getElementById("contactForm").reset();
+                setTimeout(() => {
+                    document.getElementById("result").style.display = "none";
+                }, 10000);
+            });
+    });
+</script>

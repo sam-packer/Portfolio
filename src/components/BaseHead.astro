@@ -11,8 +11,6 @@ export interface Props {
 }
 
 const { title, description, image = '/favicon.svg', ogType = 'website' } = Astro.props;
-
-import { AstroFont } from 'astro-font'
 ---
 
 <!-- Global Metadata -->
@@ -22,7 +20,8 @@ import { AstroFont } from 'astro-font'
 <meta name="generator" content={Astro.generator} />
 
 <!-- Scripts -->
-<script src="../theme.js"/>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"/>
+<script src="../lib/theme.js"/>
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

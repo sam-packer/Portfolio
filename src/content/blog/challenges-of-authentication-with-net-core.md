@@ -6,7 +6,7 @@ heroImage: "/JWT.webp"
 tags: [ "ASP.NET Core", "JWT Authentication" ]
 ---
 
-Authentication is one of those things that seems simple, until it isn’t. Recently, I ran into a challenge with ASP.NET
+Authentication is one of those things that seems simple, but it really isn’t. Recently, I ran into a challenge with ASP.NET
 authentication that tested my patience but ultimately made me a better developer.
 
 It all started when I began prototyping a simple solution for user login. I figured I’d start small and see how far I
