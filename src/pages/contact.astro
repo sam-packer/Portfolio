@@ -70,7 +70,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         document.getElementById("result").classList.add("alert", "alert-info");
         document.getElementById("result").innerHTML = "Please wait..."
 
-        fetch('https://contact-form.telesphoreo.workers.dev', {
+        fetch('/api/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 console.log(error);
                 document.getElementById("result").classList.remove("alert-info");
                 document.getElementById("result").classList.add("alert-danger");
-                document.getElementById("result").innerHTML = "Something went wrong!";
+                document.getElementById("result").innerHTML = "Something went wrong, sorry about that. You can email me manually using the icon in the sidebar.";
             })
             .then(function () {
                 document.getElementById("contactForm").reset();
