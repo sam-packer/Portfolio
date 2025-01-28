@@ -24,7 +24,7 @@ const {page} = Astro.props;
                     <p>There are no projects to show at the moment. Check back later!</p>
                 </div>
         ) : (
-                <ul>
+                <ul aria-label="List of projects">
                     {page.data.map((project) => (
                             <>
                                 <ProjectCard

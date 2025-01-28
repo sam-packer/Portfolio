@@ -3,10 +3,8 @@ const {title, img, desc, url, badge, tags, target = "_blank"} = Astro.props;
 import {Image} from "astro:assets";
 ---
 
-<div
-        class="card rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
->
-    <a href={url} target={target}>
+<li class="card rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
+    <a href={url} target={target} aria-label={title}>
         <div class="hero-content flex-col md:flex-row">
             {
                 img && (
@@ -32,7 +30,7 @@ import {Image} from "astro:assets";
                     {
                         tags &&
                         tags.map((tag) => (
-                                <p class="badge badge-outline">
+                                <p class="badge badge-outline" aria-label={`Tag ${tag}`}>
                                     {tag}
                                 </p>
                         ))
@@ -41,4 +39,4 @@ import {Image} from "astro:assets";
             </div>
         </div>
     </a>
-</div>
+</li>

@@ -2,7 +2,7 @@
 title: Overflow
 url: https://github.com/sam-packer/Overflow
 pubDate: "May 15, 2024"
-image: "/StackOverflow.webp"
+image: "/Overflow.webp"
 tags: [ "C#", "ASP.NET Core", "Razor Pages", "SQLite" ]
 ---
 

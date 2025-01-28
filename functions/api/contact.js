@@ -63,8 +63,6 @@ export async function onRequestPost({request, env}) {
             throw new Error(`Failed to send email: ${errorDetails}`);
         }
 
-        console.log(emailSend)
-
         return new Response(
             JSON.stringify({message: "Your message has been sent, thank you!"}),
             {status: 200, headers: {...corsHeaders, "Content-Type": "application/json"}}
@@ -72,7 +70,7 @@ export async function onRequestPost({request, env}) {
     }
 
     return new Response(
-        JSON.stringify({message: "Validation failed"}),
+        JSON.stringify({message: "Human verification failed."}),
         {status: 400, headers: {...corsHeaders, "Content-Type": "application/json"}}
     );
 }
