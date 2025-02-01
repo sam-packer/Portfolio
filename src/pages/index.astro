@@ -27,9 +27,9 @@ const latest_projects = projects.slice(0, 3);
             </text>
         </div>
         <div class="mt-8">
-            <a class="btn btn-primary me-4" href="https://www.linkedin.com/in/samuel-packer/" target="_blank">Let's
+            <a class="btn btn-lg btn-primary me-4" href="https://www.linkedin.com/in/samuel-packer/" target="_blank">Let's
                 connect!</a>
-            <a class="btn btn-outline" href="/experience/" target="_self">Experience</a>
+            <a class="btn btn-lg btn-outline" href="/experience/" target="_self">Experience</a>
         </div>
     </div>
 
@@ -40,18 +40,15 @@ const latest_projects = projects.slice(0, 3);
     {
         latest_projects.map((project) => (
                 <>
-                    <ul>
-                        <ProjectCard
-                                title={project.data.title}
-                                img={project.data.image}
-                                desc={project.body}
-                                url={project.data.url}
-                                target="_self"
-                                href={project.data.url}
-                                badge={project.data.badge}
-                                tags={project.data.tags}
-                        />
-                    </ul>
+                    <ProjectCard
+                            title={project.data.title}
+                            img={project.data.image}
+                            desc={project.body}
+                            url={project.data.url}
+                            target="_self"
+                            href={project.data.url}
+                            badge={project.data.badge}
+                    />
                     <div class="divider my-0"/>
                 </>
         ))
@@ -65,19 +62,16 @@ const latest_projects = projects.slice(0, 3);
 
         latest_posts.map((post) => (
                 <>
-                    <ul>
-                        <HorizontalCard
-                                title={post.data.title}
-                                img={post.data.heroImage}
-                                desc={post.data.description}
-                                url={"/blog/" + createSlug(post.data.title, post.slug)}
-                                target="_self"
-                                badge={post.data.badge}
-                        />
-                    </ul>
+                    <HorizontalCard
+                            title={post.data.title}
+                            img={post.data.image}
+                            desc={post.data.description}
+                            url={"/blog/" + createSlug(post.data.title, post.slug)}
+                            target="_self"
+                            badge={post.data.badge}
+                    />
                     <div class="divider my-0"/>
                 </>
         ))
-
     }
 </BaseLayout>

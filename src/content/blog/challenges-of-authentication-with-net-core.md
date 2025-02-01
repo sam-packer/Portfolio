@@ -2,18 +2,18 @@
 title: "Challenges of Authentication with .NET Core"
 description: "This blog posts describes the challenges with getting JWT authentication working with .NET Core and Razor Pages."
 pubDate: "Dec 20, 2024 11:17:23 AM"
-heroImage: "/JWT.webp"
+image: "/JWT.webp"
 tags: [ "ASP.NET Core", "JWT Authentication" ]
 ---
 
-Authentication is one of those things that seems simple, but it really isn’t. Recently, I ran into a challenge with ASP.NET
+Authentication is one of those things that seems simple, but it really isn’t. Recently, I ran into a challenge with
+ASP.NET
 authentication that tested my patience but ultimately made me a better developer.
 
 It all started when I began prototyping a simple solution for user login. I figured I’d start small and see how far I
 could go with a static class. It worked, but only temporarily. Users could log in, and I thought I was off to the races.
-Then,
-reality hit. I discovered that with my approach, if one user logged in, **anyone else could access the site as if they
-were logged in too**. Not exactly a model of secure authentication.
+Then, reality hit. I discovered that with my approach, if one user logged in, **anyone else could access the site as if
+they were logged in too**. Not exactly a model of secure authentication.
 
 I decided to implement JWT (JSON Web Token) authentication and turned to the Microsoft docs for guidance. It all seemed
 to be going well, until it wasn’t. After logging in, users immediately hit an unauthorized page.
@@ -55,6 +55,7 @@ This fetches the `AuthToken` cookie from your browser and adds the value as a he
 created with my initial JWT authentication implementation, but this made it persist throughout the application.
 
 You can then add this line of code in your `Program.cs` entrypoint to register the middleware:
+
 ```csharp
 app.UseMiddleware<TokenCookieMiddleware>();
 ```
@@ -65,8 +66,7 @@ Reflecting on this experience, I realized how much it mirrored the process of le
   process.
 
 - **Documentation is your friend**. But it won’t spoon-feed you the solution. You have to dig deep, connect the dots,
-  and
-  adapt.
+  and adapt.
 
 - **The little things matter**. A missing piece can derail your entire app, but solving it is incredibly satisfying.
 

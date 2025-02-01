@@ -4,24 +4,23 @@
 import '../styles/global.css';
 
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	ogType?: string;
+    title: string;
+    description: string;
+    image?: string;
+    ogType?: string;
 }
 
-const { title, description, image = '/favicon.svg', ogType = 'website' } = Astro.props;
+const {title, description, image = '/profile.webp', ogType = 'website'} = Astro.props;
 ---
 
 <!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="generator" content={Astro.generator} />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<meta name="generator" content={Astro.generator}/>
 
 <!-- Scripts -->
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"/>
-<script src="../lib/theme.js"/>
+<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-L4SRG562RF"/>
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -41,3 +40,15 @@ const { title, description, image = '/favicon.svg', ogType = 'website' } = Astro
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-L4SRG562RF');
+</script>

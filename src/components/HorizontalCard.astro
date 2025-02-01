@@ -4,7 +4,7 @@ import {Image} from "astro:assets";
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 ---
 
-<li class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]" aria-label={title}>
+<div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]" aria-label={title}>
     <a href={url} target={target} aria-label={title}>
         <div class="hero-content flex-col md:flex-row">
             {
@@ -39,4 +39,4 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
             </div>
         </div>
     </a>
-</li>
+</div>

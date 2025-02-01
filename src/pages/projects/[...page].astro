@@ -12,7 +12,7 @@ export async function getStaticPaths({paginate}) {
 const {page} = Astro.props;
 ---
 
-<BaseLayout title="Experience | Sam Packer" sideBarActiveItemID="projects">
+<BaseLayout title="Projects | Sam Packer" sideBarActiveItemID="projects">
     <div class="mb-5">
         <div class="text-3xl w-full font-bold">Projects</div>
     </div>
@@ -24,23 +24,21 @@ const {page} = Astro.props;
                     <p>There are no projects to show at the moment. Check back later!</p>
                 </div>
         ) : (
-                <ul aria-label="List of projects">
-                    {page.data.map((project) => (
-                            <>
-                                <ProjectCard
-                                        title={project.data.title}
-                                        img={project.data.image}
-                                        desc={project.body}
-                                        url={project.data.url}
-                                        target="_self"
-                                        href={project.data.url}
-                                        badge={project.data.badge}
-                                        tags={project.data.tags}
-                                />
-                                <div class="divider my-0"/>
-                            </>
-                    ))}
-                </ul>
+            page.data.map((project) => (
+                    <>
+                        <ProjectCard
+                                title={project.data.title}
+                                img={project.data.image}
+                                desc={project.body}
+                                url={project.data.url}
+                                target="_self"
+                                href={project.data.url}
+                                badge={project.data.badge}
+                                tags={project.data.tags}
+                        />
+                        <div class="divider my-0"/>
+                    </>
+            ))
         )
     }
 

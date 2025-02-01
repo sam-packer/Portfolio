@@ -1,37 +1,62 @@
 <script lang="ts">
     import {fade} from 'svelte/transition';
+    import {tick} from "svelte";
+    import {Turnstile} from 'svelte-turnstile';
 
     let responseMessage: string | null = null;
-    let success: boolean;
-    let isVisible = false;
+    let loading: boolean = false;
+    let success: boolean = false;
+    let isVisible: boolean = false;
+
+    let form: HTMLFormElement | null = null;
 
     async function submit(e: SubmitEvent) {
+        if (form == null) {
+            return;
+        }
+
+        loading = true;
         e.preventDefault();
-        const form = e.target as HTMLFormElement;
+
+        // Introduce an artificial delay to make it feel like the form is "processing"
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
         const formData = new FormData(form);
-        await fetch("/api/contact", {
-            method: "POST",
-            body: JSON.stringify(Object.fromEntries(formData)),
-            headers: {"Content-Type": "application/json", "Accept": "application/json"},
-        }).then(async (response) => {
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {"Content-Type": "application/json", "Accept": "application/json"},
+            });
+
             const data = await response.json();
-            success = response.status === 200;
+            success = true;
             responseMessage = data.message;
-        }).catch((error) => {
+        } catch (error) {
             success = false;
-            responseMessage = error || "An error occurred while submitting the form.";
-        }).then(function () {
-            isVisible = true;
-            setTimeout(() => isVisible = false, 5000);
-            if (success) {
-                form.reset();
-            }
-        });
+            responseMessage = "An error occurred while submitting the form.";
+        }
+
+        isVisible = true;
+        await tick();
+
+        if (success) {
+            form.reset();
+        }
+
+        loading = false;
+
+        setTimeout(() => {
+            isVisible = false;
+            responseMessage = null;
+            success = false;
+        }, 5000);
     }
 </script>
 
-<form on:submit={submit} id="contactForm">
-    <div class="form-control">
+<form bind:this={form} on:submit={submit} id="contactForm">
+    <div class="form-control mt-3">
         <label class="label" for="name">
             <span class="label-text">Your Name</span>
         </label>
@@ -44,7 +69,7 @@
                 required
         />
     </div>
-    <div class="form-control">
+    <div class="form-control mt-3">
         <label class="label" for="email">
             <span class="label-text">Your Email</span>
         </label>
@@ -57,7 +82,7 @@
                 required
         />
     </div>
-    <div class="form-control">
+    <div class="form-control mt-3">
         <label class="label" for="message">
             <span class="label-text">Your Message</span>
         </label>
@@ -70,17 +95,16 @@
                 required
         ></textarea>
     </div>
-    <div class="cf-turnstile mt-3" id="turnstile-container"></div>
+    <Turnstile class="mt-3" siteKey="0x4AAAAAAA6W-c17eoXkcFQO"/>
     <div class="form-control">
-        <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+        <button type="submit" class="btn btn-primary btn-lg mt-3">
+            <span class="{loading ? 'loading loading-spinner loading-lg' : ''}"></span>
+            {loading ? "Sending..." : "Send Message"}
+        </button>
     </div>
     {#if isVisible}
-        <div class="mt-3" transition:fade>
-            {#if success}
-                <p class="alert alert-success">{responseMessage}</p>
-            {:else if !success && responseMessage != null}
-                <p class="alert alert-error">{responseMessage}</p>
-            {/if}
+        <div transition:fade class={success ? "alert alert-success mt-3" : "alert alert-error mt-3"}>
+            {responseMessage}
         </div>
     {/if}
 </form>
