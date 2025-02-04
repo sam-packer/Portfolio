@@ -13,6 +13,7 @@ const blogSchema = z.object({
 
 const projectsSchema = z.object({
     title: z.string(),
+    description: z.string(),
     url: z.string(),
     pubDate: z.coerce.date(),
     image: z.string().optional(),

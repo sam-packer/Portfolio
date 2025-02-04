@@ -19,9 +19,9 @@ export default defineConfig({
     },
     image: {
         service: passthroughImageService()
-    }
-    /*redirects: {
+    },
+    redirects: {
         "/linkedin": "https://www.linkedin.com/in/samuel-packer",
         "/github": "https://github.com/sam-packer",
-    }*/
+    }
 });

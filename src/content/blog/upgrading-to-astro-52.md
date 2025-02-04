@@ -1,6 +1,6 @@
 ---
 title: "Upgrading to Astro 5.2"
-description: "Learn how I upgraded to Astro 5.2 with the latest web technologies and rewrote my contact form"
+description: "Learn how I upgraded to Astro 5.2 with the latest web technologies and rewrote my contact form."
 pubDate: "Jan 31, 2025 10:45:04 AM"
 image: "/astro_logo.webp"
 tags: [ "Web Development" ]
@@ -8,11 +8,11 @@ tags: [ "Web Development" ]
 
 Web development is a fast-paced field, with frameworks and libraries constantly evolving. Staying up to date with your
 dependencies is crucial. Neglecting them can lead to a scenario where everything breaks at once. I learned this the hard
-way with the documentation site I built for [Plex](https://plex.us.org). One of my biggest mistakes was developing
-directly on the server using the basic nano editor instead of a fully fledged IDE. Switching to WebStorm was a game
-changer. As a JetBrains product, it’s robust and intuitive, and it has become my go-to tool for development. Recently, I
-gave the Plex documentation a major overhaul, upgrading all dependencies and rewriting outdated content to ensure it
-stays relevant.
+way with the documentation site I built for [Plex](https://plex.us.org). One of my biggest mistakes was writing the
+documentation directly on the server using the basic nano editor instead of a fully fledged IDE. Switching to WebStorm
+was a game changer. As a JetBrains product, it’s robust and intuitive, and it has become my go-to tool for web
+development. Recently, I gave the Plex documentation a major overhaul, upgrading all dependencies and rewriting outdated
+content to ensure it stays relevant.
 
 Applying the lessons I’ve learned, I’ve made it a priority to keep the dependencies for my personal portfolio up to
 date. My portfolio is built with Astro, Svelte, TailwindCSS, and DaisyUI, a stack I’ll dive into in more detail in a

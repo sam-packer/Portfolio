@@ -42,11 +42,10 @@ const latest_projects = projects.slice(0, 3);
                 <>
                     <ProjectCard
                             title={project.data.title}
+                            desc={project.data.description}
                             img={project.data.image}
-                            desc={project.body}
-                            url={project.data.url}
+                            url={"/projects/" + createSlug(project.data.title, project.slug)}
                             target="_self"
-                            href={project.data.url}
                             badge={project.data.badge}
                     />
                     <div class="divider my-0"/>
@@ -59,7 +58,6 @@ const latest_projects = projects.slice(0, 3);
     </div>
 
     {
-
         latest_posts.map((post) => (
                 <>
                     <HorizontalCard
