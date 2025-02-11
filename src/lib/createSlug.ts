@@ -9,7 +9,7 @@ export default function (title: string, staticSlug: string) {
         'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 'ü': 'u',
         'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u'
     };
-    return (
+    const slug = (
         !GENERATE_SLUG_FROM_TITLE ? staticSlug : title
             // remove leading & trailing whitespace
             .trim()
@@ -26,4 +26,5 @@ export default function (title: string, staticSlug: string) {
             // remove leading & trailing separators
             .replace(/^-+|-+$/g, '')
     )
+    return slug + "/";
 }
