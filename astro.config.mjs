@@ -1,19 +1,13 @@
 import {defineConfig, passthroughImageService} from 'astro/config';
 import mdx from '@astrojs/mdx';
-import partytown from "@astrojs/partytown";
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import tailwindcss from "@tailwindcss/vite";
 
-
 // https://astro.build/config
 export default defineConfig({
     site: 'https://sampacker.com',
-    integrations: [mdx(), partytown({
-        config: {
-            "forward": ["dataLayer.push"]
-        }
-    }), sitemap(), svelte()],
+    integrations: [mdx(), sitemap(), svelte()],
     vite: {
         plugins: [tailwindcss()],
     },

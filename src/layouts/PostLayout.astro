@@ -25,7 +25,7 @@ import {Image} from "astro:assets";
                 <span>Back</span>
             </a>
             {image &&
-                    <Image width={750} height={422} format="webp" src={image} alt={title}
+                    <Image width={750} height={422} format="webp" loading="eager" src={image} alt={title}
                            class="w-full mb-3 rounded-lg"/>}
             <h1 class="title text-4xl mb-1 font-bold">{title}</h1>
             {pubDate &&

@@ -56,52 +56,44 @@
 </script>
 
 <form bind:this={form} on:submit={submit} id="contactForm">
-    <div class="form-control mt-3">
-        <label class="label" for="name">
-            <span class="label-text">Your Name</span>
-        </label>
+    <fieldset class="fieldset">
+        <legend class="fieldset-legend text-base">Your Name</legend>
         <input
                 type="text"
                 id="name"
                 name="name"
-                class="input input-bordered w-full"
+                class="input validator input-bordered w-full"
                 placeholder="Enter your name"
                 required
         />
-    </div>
-    <div class="form-control mt-3">
-        <label class="label" for="email">
-            <span class="label-text">Your Email</span>
-        </label>
+    </fieldset>
+    <fieldset class="fieldset">
+        <legend class="fieldset-legend floating-label text-base">Your Email</legend>
         <input
                 type="email"
                 id="email"
                 name="email"
-                class="input input-bordered w-full"
+                class="input validator input-bordered w-full"
                 placeholder="Enter your email"
                 required
         />
-    </div>
-    <div class="form-control mt-3">
-        <label class="label" for="message">
-            <span class="label-text">Your Message</span>
-        </label>
+    </fieldset>
+    <fieldset class="fieldset">
+        <legend class="fieldset-legend text-base">Your Message</legend>
         <textarea
                 id="message"
                 name="message"
-                class="textarea textarea-bordered w-full"
+                class="textarea validator textarea-bordered w-full"
                 placeholder="Enter your message"
                 rows="5"
                 required
         ></textarea>
-    </div>
+    </fieldset>
     <Turnstile class="mt-3" siteKey="0x4AAAAAAA6W-c17eoXkcFQO"/>
-    <div class="form-control">
-        <button type="submit" class="btn btn-primary btn-lg mt-3">
-            <span class="{loading ? 'loading loading-spinner loading-lg' : ''}"></span>
-            {loading ? "Sending..." : "Send Message"}
-        </button>
-    </div>
+    <button type="submit" class="btn btn-primary btn-lg mt-3">
+        <span class="{loading ? 'loading loading-spinner loading-md' : ''}"></span>
+        {loading ? "Sending..." : "Send Message"}
+    </button>
     {#if isVisible}
         <div transition:fade class={success ? "alert alert-success mt-3" : "alert alert-error mt-3"}>
             {responseMessage}

@@ -1,13 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HorizontalCard from "../../components/HorizontalCard.astro";
+import BlogCard from "../../components/BlogCard.astro";
 import {getCollection} from "astro:content";
 import createSlug from "../../lib/createSlug"
+import dayjs from "dayjs";
 
 export async function getStaticPaths({paginate}) {
     const posts = await getCollection("blog");
-    posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-    return paginate(posts, {pageSize: 10});
+    const currentDate = dayjs();
+    const filteredPosts = posts.filter(post => {
+        const postDate = dayjs(post.data.pubDate);
+        return postDate.isBefore(currentDate) || postDate.isSame(currentDate);
+    });
+    filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    return paginate(filteredPosts, {pageSize: 10});
 }
 
 const {page} = Astro.props;
@@ -27,13 +33,14 @@ const {page} = Astro.props;
         ) : (
             page.data.map((post) => (
                     <>
-                        <HorizontalCard
+                        <BlogCard
                                 title={post.data.title}
                                 img={post.data.image}
                                 desc={post.data.description}
                                 url={"/blog/" + createSlug(post.data.title, post.slug)}
                                 target="_self"
                                 badge={post.data.badge}
+                                referrer="blog"
                                 tags={post.data.tags}
                         />
                         <div class="divider my-0"/>

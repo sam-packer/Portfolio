@@ -20,7 +20,7 @@ import {Image} from "astro:assets";
                 <span>Back</span>
             </a>
             {image &&
-                    <Image width={400} height={200} format="webp" src={image} alt={title}
+                    <Image width={400} height={200} format="webp" loading="eager" src={image} alt={title}
                            class="mb-3 rounded-lg"/>}
             <h1 class="title text-4xl mb-1 font-bold">{title}</h1>
             <div class="flex flex-wrap gap-2 my-4">

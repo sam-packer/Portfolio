@@ -1,11 +1,21 @@
 ---
-const {title, img, desc, url, badge, tags, target = "_blank"} = Astro.props;
+const {title, img, desc, url, badge, tags, target = "_blank", referrer} = Astro.props;
 import {Image} from "astro:assets";
-const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+// Ensure we always get the base blog URL
+const parts = url.split("/");
+const blogIndex = parts.indexOf("blog"); // Find index of "blog" in URL
+
+let tag_url = "/blog/tag"; // Default if no "blog" segment is found
+
+if (blogIndex !== -1) {
+    // Construct base URL dynamically, ensuring we always get "/blog/tag"
+    tag_url = `${parts.slice(0, blogIndex + 1).join("/")}/tag`;
+}
 ---
 
 <div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]" aria-label={title}>
-    <a href={url} target={target} aria-label={title}>
+    <a href={url} target={target} aria-label={title}
+       data-event={referrer === "home" ? "Blog Card From Front Page" : "Blog Card From Blog Page"}>
         <div class="hero-content flex-col md:flex-row">
             {
                 img && (
@@ -14,6 +24,7 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
                                     width={750}
                                     height={422}
                                     format="webp"
+                                    loading="eager"
                                     alt={title}
                                     class="max-w-full md:max-w-[13rem] rounded-lg"
                             />

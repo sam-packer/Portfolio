@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import PlausibleAnalytics from "../components/PlausibleAnalytics.svelte";
 import {ClientRouter} from "astro:transitions";
 
 import {SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API} from "../config";
@@ -41,5 +42,6 @@ const {
     {includeSidebar &&
             <SideBar sideBarActiveItemID={sideBarActiveItemID}/>}
 </div>
+<PlausibleAnalytics client:load/>
 </body>
 </html>

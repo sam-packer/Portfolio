@@ -20,37 +20,33 @@ const {title, description, image = '/profile.webp', ogType = 'website'} = Astro.
 <meta name="generator" content={Astro.generator}/>
 
 <!-- Scripts -->
-<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-L4SRG562RF"/>
+<script defer data-domain="sampacker.com"
+        data-api="/events/api/event"
+        src="/events/js/script.outbound-links.tagged-events.js"/>
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<meta name="title" content={title}/>
+<meta name="description" content={description}/>
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content={ogType} />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-<meta property="og:locale" content="en_US" />
-<meta property="og:site_name" content="Sam Packer" />
+<meta property="og:type" content={ogType}/>
+<meta property="og:url" content={Astro.url}/>
+<meta property="og:title" content={title}/>
+<meta property="og:description" content={description}/>
+<meta property="og:image" content={new URL(image, Astro.url)}/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Sam Packer"/>
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:url" content={Astro.url}/>
+<meta property="twitter:title" content={title}/>
+<meta property="twitter:description" content={description}/>
+<meta property="twitter:image" content={new URL(image, Astro.url)}/>
 
-<script type="text/partytown">
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
+<script is:inline>
+    window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments)
     }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-L4SRG562RF');
 </script>
