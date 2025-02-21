@@ -68,7 +68,7 @@
         />
     </fieldset>
     <fieldset class="fieldset">
-        <legend class="fieldset-legend floating-label text-base">Your Email</legend>
+        <legend class="fieldset-legend text-base">Your Email</legend>
         <input
                 type="email"
                 id="email"

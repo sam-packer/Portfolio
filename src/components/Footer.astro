@@ -2,8 +2,28 @@
 const today = new Date();
 ---
 
+<noscript>
+  <style>
+    #back-to-top { display: none; }
+  </style>
+</noscript>
+
 <footer class="footer footer-center block mb-5 pt-10">
+  <div id="back-to-top" class="btn btn-outline m-4" onclick='window.scrollTo({top: 0, behavior: "smooth"});'>Back to Top</div>
   <div class="pb-2">
     Copyright &copy; {today.getFullYear()} Sam Packer
   </div>
 </footer>
+
+<script is:inline>
+  function init(){
+    const doc = document.documentElement;
+    const backToTopButton = document.getElementById("back-to-top");
+
+    if (doc.clientHeight >= doc.scrollHeight - 75) {
+      backToTopButton.style.display = "none";
+    }
+  }
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>

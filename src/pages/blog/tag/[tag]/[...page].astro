@@ -1,17 +1,23 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import BlogCard from "../../../../components/BlogCard.astro";
+import BlogCard from "@components/BlogCard.astro";
 import {getCollection} from "astro:content";
 import createSlug from "../../../../lib/createSlug";
+import dayjs from "dayjs";
 
 export async function getStaticPaths({paginate}) {
+    const currentDate = dayjs();
     const all_posts = await getCollection("blog");
-    const all_tags = all_posts.flatMap((post) => {
+    const unpublishedPosts = all_posts.filter(post => {
+        const postDate = dayjs(post.data.pubDate);
+        return postDate.isBefore(currentDate) || postDate.isSame(currentDate);
+    });
+    const all_tags = unpublishedPosts.flatMap((post) => {
         return post.data.tags || [];
     });
 
     return all_tags.flatMap((tag) => {
-        const filtered_posts = all_posts.filter((post) => {
+        const filtered_posts = unpublishedPosts.filter((post) => {
             return post.data.tags?.includes(tag);
         });
         return paginate(filtered_posts, {
