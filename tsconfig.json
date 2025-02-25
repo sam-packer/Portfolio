@@ -11,5 +11,6 @@
         "src/layouts/*"
       ]
     }
-  }
+  },
+  "include":  ["src/**/*.ts", "src/**/*.svelte", "src/types/global.d.ts"]
 }

@@ -5,11 +5,13 @@ import {getCollection} from "astro:content";
 import createSlug from "../lib/createSlug"
 import ProjectCard from "../components/ProjectCard.astro";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 const currentDate = dayjs();
 const posts = (await getCollection("blog"))
-    .filter(post => dayjs(post.data.pubDate).isBefore(currentDate) || dayjs(post.data.pubDate).isSame(currentDate))
-    .sort((a, b) => dayjs(b.data.pubDate).valueOf() - dayjs(a.data.pubDate).valueOf());
+    .filter(post => dayjs(post.data.pubDate).utc().isBefore(currentDate) || dayjs(post.data.pubDate).utc().isSame(currentDate))
+    .sort((a, b) => dayjs(b.data.pubDate).utc().valueOf() - dayjs(a.data.pubDate).utc().valueOf());
 
 const projects = (await getCollection("projects")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 

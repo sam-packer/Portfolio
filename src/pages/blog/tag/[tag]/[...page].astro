@@ -7,20 +7,20 @@ import dayjs from "dayjs";
 
 export async function getStaticPaths({paginate}) {
     const currentDate = dayjs();
-    const all_posts = await getCollection("blog");
-    const unpublishedPosts = all_posts.filter(post => {
+    const allPosts = await getCollection("blog");
+    const publishedPosts = allPosts.filter(post => {
         const postDate = dayjs(post.data.pubDate);
         return postDate.isBefore(currentDate) || postDate.isSame(currentDate);
     });
-    const all_tags = unpublishedPosts.flatMap((post) => {
+    const allTags = publishedPosts.flatMap((post) => {
         return post.data.tags || [];
     });
 
-    return all_tags.flatMap((tag) => {
-        const filtered_posts = unpublishedPosts.filter((post) => {
+    return allTags.flatMap((tag) => {
+        const filteredPosts = publishedPosts.filter((post) => {
             return post.data.tags?.includes(tag);
         });
-        return paginate(filtered_posts, {
+        return paginate(filteredPosts, {
             params: {tag},
             pageSize: 10,
         });
@@ -84,7 +84,7 @@ const params = Astro.params;
                             <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
                         </svg>
                         {" "}
-                        Recent posts
+                        Newer posts
                     </a>
             ) : (
                     <div/>

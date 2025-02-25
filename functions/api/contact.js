@@ -1,5 +1,5 @@
 const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "https://sampacker.com https://sammypacker.com",
     "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
     "Access-Control-Max-Age": "86400",
 };
@@ -76,28 +76,20 @@ export async function onRequestPost({request, env}) {
 }
 
 async function onRequestOptions(request) {
-    if (
-        request.headers.get("Origin") !== null &&
-        request.headers.get("Access-Control-Request-Method") !== null &&
-        request.headers.get("Access-Control-Request-Headers") !== null
-    ) {
+    const origin = request.headers.get("Origin");
+    if (origin && ["https://sampacker.com", "https://sammypacker.com"].includes(origin)) {
         // Handle CORS preflight requests.
         return new Response(null, {
             headers: {
                 ...corsHeaders,
-                "Access-Control-Allow-Headers": request.headers.get(
-                    "Access-Control-Request-Headers",
-                ),
-            },
-        });
-    } else {
-        // Handle standard OPTIONS request.
-        return new Response(null, {
-            headers: {
-                Allow: "GET, HEAD, POST, OPTIONS",
+                "Access-Control-Allow-Headers": request.headers.get("Access-Control-Request-Headers"),
+                "Access-Control-Allow-Origin": origin,
             },
         });
     }
+    return new Response(null, {
+        status: 403, // Forbidden
+    });
 }
 
 export function onRequest({request, env, ctx}) {

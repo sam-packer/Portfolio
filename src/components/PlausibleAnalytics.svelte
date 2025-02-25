@@ -1,14 +1,13 @@
-<script>
+<script lang="ts">
     import {onMount} from "svelte";
 
     onMount(() => {
-
-        function attachEventListeners() {
+        function attachEventListeners(): void {
             document.querySelectorAll("[data-event]").forEach((element) => {
-                if (!element.dataset.tracked) { // Prevent duplicate event listeners
+                if (element instanceof HTMLElement && !element.dataset.tracked) { // Prevent duplicate event listeners
                     element.dataset.tracked = "true";
 
-                    element.addEventListener("click", function (event) {
+                    element.addEventListener("click", function (event: Event) {
                         const eventName = element.getAttribute("data-event");
 
                         if (window.plausible && eventName) {
