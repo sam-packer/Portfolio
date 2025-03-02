@@ -37,7 +37,7 @@ avoid. Instead of striving for fewer problems, focus on creating a culture, whet
 relationships, or your personal life. Problems should be seen as opportunities to grow and improve. When you embrace
 problems, you’re not just solving them; you’re building resilience, trust, and creativity.
 
-So, next time you’re tempted to celebrate having “no problems,” pause and ask yourself: am I really seeing the full
+So, next time you’re tempted to celebrate having “no problems” pause and ask yourself: am I really seeing the full
 picture? And remember, the goal isn’t to avoid problems. It’s to handle them well when they come up. Because at the end
 of the day, it’s not about how many problems you have. It’s about how you face them, learn from them, and grow because
 of them.

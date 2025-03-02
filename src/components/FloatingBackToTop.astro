@@ -1,0 +1,56 @@
+<noscript>
+    <style>
+        #back-to-top {
+            display: none;
+        }
+    </style>
+</noscript>
+
+<button id="back-to-top" class="fixed bottom-8 right-8 btn btn-circle btn-xl
+    transition duration-150 ease-in-out"
+        onclick='window.scrollTo({top: 0, behavior: "smooth"});'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+         style="fill: currentColor;transform: ;msFilter:;">
+        <path d="m6.293 13.293 1.414 1.414L12 10.414l4.293 4.293 1.414-1.414L12 7.586z"></path>
+    </svg>
+</button>
+
+<script>
+    function setupBackToTopButton() {
+        const backToTopButton = document.getElementById('back-to-top');
+
+        // Determine if the button should be initially visible
+        let isButtonVisible = window.scrollY > 100;
+
+        // Initial setup based on the initial scroll position
+        if (isButtonVisible) {
+            backToTopButton.classList.remove('hidden');
+        } else {
+            backToTopButton.classList.add('hidden');
+        }
+
+        function handleScroll() {
+            const shouldShowButton = window.scrollY > 100;
+
+            // Only update the DOM if the button's visibility needs to change
+            if (shouldShowButton && !isButtonVisible) {
+                backToTopButton.classList.remove('hidden');
+                isButtonVisible = true;
+            } else if (!shouldShowButton && isButtonVisible) {
+                backToTopButton.classList.add('hidden');
+                isButtonVisible = false;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+    }
+
+    function init() {
+        document.addEventListener('DOMContentLoaded', function () {
+            setupBackToTopButton();
+        });
+    }
+
+    init();
+    document.addEventListener('astro:after-swap', setupBackToTopButton);
+</script>

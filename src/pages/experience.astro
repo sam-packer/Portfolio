@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
+import Experience from "../components/Experience.svelte";
+import TimeLineElement from "../components/TimeLine.svelte";
 ---
 
 <BaseLayout title="Experience | Sam Packer" sideBarActiveItemID="experience">
@@ -8,15 +9,21 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
         <div class="text-3xl w-full font-bold">Summary</div>
     </div>
 
-    <div class="mb-10 text-left lg:text-justify">
-        From streamlining complex systems to designing creative solutions, I focus on using technology to solve
-        real-world problems. Whether leading the migration of development workflows to GitHub, building and maintaining
-        reliable systems for more efficient information systems, or designing automation tools that simplify business
-        tasks, I bring a hands-on, problem-solving approach to every challenge. My experience spans technical recovery
-        efforts that saved businesses thousands, creating data-driven strategies to guide better decisions, and even
-        building websites and social media campaigns that connect people and amplify impact. With a passion for
-        innovation and a focus on results, I’m dedicated to building solutions that make life easier, more efficient,
-        and more engaging.
+    <div class="text-lg text-base-content prose min-w-full text-left lg:text-justify mb-10">
+        <p>
+            I’ve always been drawn to the idea of using technology to advance businesses and their needs. Whether it’s
+            improving the workflow for developers and businesses or building applications that are intuitive and fast to
+            use, I enjoy developing solutions that matter. Over the years, I’ve tackled many complex challenges and
+            needs, such as leading disaster recovery efforts that have saved thousands of dollars, orchestrating
+            complex database designs to steer smarter decision making, and building websites that are a delight to use.
+        </p>
+        <p>
+            My passions and goals are not just about building things to achieve a task. It’s about going the extra mile
+            to create solutions that feel intuitive, meaningful, and are a joy to interact with. I want to build systems
+            and tools that don’t just achieve the bare minimum for a task, but make people’s lives better. The impact
+            that I create by putting other people's needs is the most important factor when developing a new process and
+            fuels my purpose and passion.
+        </p>
     </div>
 
     <div class="mb-5">
@@ -37,105 +44,21 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
         </TimeLineElement>
     </div>
 
-    <div class="mb-5">
-        <div class="text-3xl w-full font-bold">Professional Experience</div>
-    </div>
-
-    <div class="time-line-container mb-10">
-        <TimeLineElement
-                title="Process Optimization Developer"
-                subtitle="February 2024 to Present at Education Credit Union, Amarillo, TX"
-        >
-            I led a migration to GitHub, which helped improve collaboration and teamwork across the organization. I
-            designed and implemented CI/CD pipelines with GitHub Actions to make deployments more efficient. I also
-            created automation workflows with APIs to streamline repetitive tasks and boost productivity. Using Python,
-            I analyzed data to support better business decisions, and I developed processes for extracting and
-            transforming SQL data to simplify reporting and analytics. Additionally, I built a program to handle mass
-            file deletions more effectively, improving overall system performance.
-        </TimeLineElement>
-        <TimeLineElement
-                title="Student Worker"
-                subtitle="August 2021 to May 2025 at West Texas A&M University, Canyon, TX"
-        >
-            I assisted in managing a fleet of gaming computers, ensuring reliable performance and minimizing technical
-            issues to create a better user experience. I also led disaster recovery efforts for a bowling center,
-            implementing effective solutions to safeguard operations and prevent financial losses. These experiences
-            allowed me to develop a hands-on approach to troubleshooting and a strong ability to handle critical
-            situations effectively.
-        </TimeLineElement>
-        <TimeLineElement
-                title="Website Designer"
-                subtitle="Summer 2022 at Mission 2540, Amarillo, TX"
-        >
-            I had the opportunity to redesign the website for Mission 2540, a nonprofit dedicated to supporting
-            low-income individuals through various activities and programs. As part of a business proposal for my
-            technical communication class, my team proposed a website overhaul to improve functionality and engagement.
-            I created an initial prototype, which was well received, and then refined it into a polished final version.
-            The redesign included a more intuitive structure, enhanced visuals, and the integration of a seamless
-            payment system to support donations. It was a rewarding experience to apply my skills in a way that directly
-            benefits an organization making a meaningful impact.
-        </TimeLineElement>
-        <TimeLineElement
-                title="Webmaster"
-                subtitle="April 2016 to May 2019 at Winds Across the Bay, El Cerrito, CA"
-        >
-            I designed a new website from the ground up, creating a more engaging and user-friendly experience while
-            improving search engine visibility. I also managed social media platforms, successfully growing audience
-            engagement and expanding the organization's reach. In addition, I designed event flyers that helped
-            streamline marketing efforts, reducing outsourcing costs. To support operations, I engineered a new hosting
-            solution that lowered expenses while maintaining reliability. These efforts allowed me to combine creativity
-            with technical expertise to drive meaningful results.
-        </TimeLineElement>
-    </div>
-
-    <div class="mb-5">
-        <div class="text-3xl w-full font-bold">Extracurriculars and Volunteer Experience</div>
-    </div>
-
-    <div class="time-line-container mb-10">
-        <TimeLineElement
-                title="Buffteks Guest Lecturer"
-                subtitle="November 2024 at West Texas A&M University, Canyon, TX"
-        >
-            I had the opportunity to be a guest lecturer for Buffteks, where I spoke about securing Linux with
-            firewalls, setting up a VPN, and using SSH keys. While these security fundamentals were important, my main
-            focus was showcasing Caddy, a powerful web server that simplifies web development and reduces the Linux
-            learning curve. I demonstrated how Caddy automates tasks like HTTPS provisioning and reverse proxying,
-            making it an excellent tool for developers looking to streamline their workflow. It was great to engage with
-            the club and share how Caddy can make deploying and managing websites much easier.
-        </TimeLineElement>
-        <TimeLineElement
-                title="Intern"
-                subtitle="January 2018 to March 2020 at The Center for Independent Living, Alameda, CA"
-        >
-            I managed a technology help service designed for seniors with disabilities, focusing on
-            providing accessible and effective support. I took the initiative to expand the program's outreach, ensuring
-            that more individuals could benefit from the services offered. Additionally, I conducted in-depth research
-            to identify the best assistive technology products for individuals with disabilities, allowing the program
-            to better meet their needs and enhance their access to essential tools.
-        </TimeLineElement>
-        <TimeLineElement
-                title="Teacher Assistant"
-                subtitle="May 2019 to August 2019 at Albany Senior Center, Albany, CA"
-        >
-            I directed a technology class for seniors, focusing on fostering their confidence and skills in using
-            digital
-            technology. I taught essential skills such as using social media to keep in contact with family and loved
-            ones. I also took the lead in reprovisioning non-functional computers at the organization, ensuring
-            they were accessible to seniors, thereby supporting their engagement with technology in a meaningful way.
-        </TimeLineElement>
-    </div>
+    <Experience client:only/>
 
     <div class="mb-5">
         <div class="text-3xl w-full font-bold">Certifications</div>
     </div>
 
-    <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <ul class="list-disc list-inside mb-10 grid gap-2">
         <li>
-            <a href="#" target="_blank">Meta Front-End Web Developer Professional Certification</a>
+            Meta Front-End Web Developer Professional Certification
+            <div class="badge badge-success">Obtaining</div>
+
         </li>
         <li>
-            <a href="#" target="_blank">IBM AI Product Manager Professional Certification</a>
+            IBM AI Product Manager Professional Certification
+            <div class="badge badge-success">Obtaining</div>
         </li>
     </ul>
 
@@ -144,30 +67,18 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     </div>
 
     <div>
-        <div class="text-2xl w-full font-bold">Technical</div>
+        <div class="text-2xl w-full font-bold mb-2">Languages & Frameworks</div>
     </div>
 
-    <ul class="list-disc md:columns-5 columns-2 mx-6">
+    <ul class="list-disc list-inside md:columns-4 columns-2">
         <li>Java</li>
         <li>C#</li>
         <li>Python</li>
+        <li>HTML / CSS</li>
+        <li>JavaScript</li>
         <li>MySQL</li>
         <li>MongoDB</li>
         <li>Redis</li>
-        <li>SCRUM</li>
-        <li>Agile</li>
-        <li>LEAN</li>
-    </ul>
-
-    <div class="divider"></div>
-
-    <div>
-        <div class="text-2xl w-full font-bold">Software / Frameworks</div>
-    </div>
-
-    <ul class="list-disc md:columns-4 columns-2 mx-6">
-        <li>HTML / CSS</li>
-        <li>JavaScript</li>
         <li>ASP.NET Core</li>
         <li>ReactJS</li>
         <li>AngularJS</li>
@@ -179,20 +90,37 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <div class="divider"></div>
 
     <div>
-        <div class="text-2xl w-full font-bold">System Administration</div>
+        <div class="text-2xl w-full font-bold mb-2">Infrastructure & System Administration</div>
     </div>
 
-    <ul class="list-disc md:columns-3 columns-2 mx-6">
+    <ul class="list-disc list-inside md:columns-3 columns-2">
         <li>Ubuntu / Debian</li>
+        <li>Windows Server</li>
         <li>AWS</li>
         <li>Hetzner</li>
         <li>Google Workspace</li>
-        <li>Windows Server</li>
         <li>Active Directory / Entra ID</li>
         <li>Group Policy Management</li>
         <li>Okta / Auth0</li>
         <li>FusionAuth</li>
         <li>Central Authentication Service (CAS)</li>
         <li>Duo MFA</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div>
+        <div class="text-2xl w-full font-bold mb-2">Methodologies & Tools</div>
+    </div>
+
+    <ul class="list-disc list-inside md:columns-4 columns-2">
+        <li>Git / GitHub</li>
+        <li>GitHub Actions</li>
+        <li>Docker</li>
+        <li>Jenkins CI/CD</li>
+        <li>Nexus OSS</li>
+        <li>SCRUM</li>
+        <li>Agile</li>
+        <li>LEAN</li>
     </ul>
 </BaseLayout>

@@ -8,24 +8,24 @@ tags: [ "C#", "ASP.NET Core", "Razor Pages", "MySQL" ]
 ---
 import {YouTube} from 'astro-embed';
 
-I designed and developed a comprehensive Mailroom Management System tailored for apartment complexes to streamline package tracking and resident communication. The system allows property managers to efficiently monitor incoming packages, authenticate users, and notify residents of deliveries via email notifications.
+I designed and developed a Mailroom Management System tailored for apartment complexes to track packages and improve resident communication. The system allows property managers to monitor packages that have been delivered and picked up, but also notify residents of deliveries via email notifications.
 
 #### User Management
-A robust user management module allows administrators to create, update, and manage resident and staff accounts with varying levels of access.
+A robust user management module allows property managers to create, update, and manage resident information.
 
 #### Package Management
-Managers can log, track, and update the status of packages in real-time, ensuring accurate and up-to-date records.
+Both managers and residents can track the status of packages, which reduces wasted space by packages that haven't been picked up.
 
 #### Authentication & Security
-Implemented JWT (JSON Web Token) authentication to ensure secure access to the system, safeguarding sensitive data and user information.
+I implemented JWT (JSON Web Token) authentication with .NET to ensure secure access to the system, safeguarding sensitive data and user information.
 
 #### Email Notification Support
-Integrated email notifications to automatically alert residents when their packages are received and ready for pickup, enhancing communication and convenience.
+I integrated email notifications for residents to alert them when their packages are delivered to the front office and ready for pickup. This gives residents clearer communication while reducing wasted space in the office for property managers.
 
 #### Database Integration
-Utilized MySQL as the backend database to store and manage user data, package details, and system logs efficiently.
+MySQL was used as the backend database to store and manage the user data and package history.
 
-Built using .NET 8.0, the system leverages ASP.NET Core and Razor Pages for a seamless and responsive user interface. This solution not only simplifies package management for property managers but also improves the overall resident experience by reducing delays and ensuring timely delivery notifications.
+This project was built with ASP.NET Core and Razor Pages for a seamless and responsive user interface. This solution not only simplifies package management for property managers but also improves the overall resident experience by reducing delays and ensuring timely delivery notifications.
 
 You can see a demo of the project working here:
 <YouTube id="mUyN18w5LzM"/>

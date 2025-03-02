@@ -8,35 +8,40 @@ image: "/Notetaker.webp"
 tags: [ "Python", "Artificial Intelligence", "AI Workflows", "OpenAI" ]
 ---
 
-This project demonstrates the development of an automated pipeline for generating concise, structured notes from
-Coursera course materials using AI. The process involves downloading course content, including videos and transcripts,
-and leveraging the OpenAI API to summarize English transcripts into digestible bullet points. The summarized notes are
-then formatted for use in Obsidian, a popular knowledge management tool, and seamlessly integrated into an Obsidian
-Vault for efficient organization and retrieval.
+Are you someone who prefers to read rather than watch videos like me? Yes? Then maybe you know the struggle of when a
+platform is video first with their content. Coursera is an excellent site, but also uses videos as their primary method
+of instruction. I built this project to generate structured notes from Coursera course materials using AI. The process
+involves downloading course content and leveraging the OpenAI API to summarize English transcripts into digestible
+bullet points. The summarized notes are then formatted for use in Obsidian, a popular note-taking management tool, and
+a little magic to rename the files into an ordered structure.
 
 #### Extracting Course Content
 
-I used a specialized tool to download all course materials from Coursera. I focused specifically on using the English
-transcripts as the foundation for generating my notes.
+I used a tool to download all course materials from Coursera (which is allowed under their Terms of Service). I focused
+specifically on using the English transcripts as my foundation for generating notes.
 
-#### AI-Powered Summarization
+#### AI Powered Summarization
 
-To transform lengthy transcripts into clear, actionable bullet points, I integrated the OpenAI API into my workflow. I
-chose the gpt-4o-mini model for its balance of cost-effectiveness and performance, which allowed me to process 118
-files for just $0.15, which is equivalent to the content of three full courses.
+To transform lengthy transcripts into clear, but rememberable, bullet points, I used the OpenAI API. I actually used
+DeepSeek V3 as my AI model for its excellent writing capabilities.
 
 #### Optimizing the Prompt
 
-I experimented with and refined my prompts for the OpenAI API to ensure high-quality summaries while keeping costs low.
-This experience taught me the importance of prompt engineering in controlling API usage and expenses.
+I experimented with and refined my prompts for the DeepSeek model to ensure high-quality summaries while keeping costs
+low. This experience taught me the importance of prompt engineering in controlling API usage and expenses. With a badly
+optimized prompt, the costs skyrocketed.
 
 #### Obsidian Integration
 
-I automated the conversion of summarized notes into Obsidian-compatible Markdown format and organized them directly into
-my Obsidian Vault. This made it effortless to access, search, and build upon my notes over time.
+I automated the conversion of summarized notes into Markdown files, which is what Obsidian uses. I built some logic to
+rename each course, module, section, and video for easier organization. It was a goal of mine to be able to look at
+these notes much later on.
 
-This project reflects my ability to harness AI to simplify and enhance learning workflows. By automating the
-summarization and organization of course content, I created a system that saves time and improves knowledge retention.
-It also deepened my understanding of cost-effective AI model selection and the nuances of prompt optimization.
-Integrating the results into Obsidian allowed me to maintain a centralized, easily accessible repository of knowledge,
-which has been invaluable for my personal and professional growth.
+This project taught me a use case of AI to simplify and enhance how I learn. By automating the
+summarization and organization of course content, I created a system that makes it easier for me to study the material
+more effectively. It's much easier to turn notes into flashcards or other materials than a video. Developing this
+process also deepened my
+understanding of nuances of selecting an AI model and tweaking the `temperature` and `top_p` parameters. The most
+interesting part to me was the prompt engineering and how that can have a drastic effect on the quality. Integrating the
+results into Obsidian allowed me to maintain an easily accessible and organized structure of the notes which has been
+invaluable for my personal and professional growth.

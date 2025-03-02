@@ -7,6 +7,7 @@ import PlausibleAnalytics from "../components/PlausibleAnalytics.svelte";
 import {ClientRouter} from "astro:transitions";
 
 import {SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API} from "../config";
+import FloatingBackToTop from "../components/FloatingBackToTop.astro";
 
 const {
     image,
@@ -37,6 +38,7 @@ const {
                 <slot/>
             </main>
         </div>
+        <FloatingBackToTop/>
         <Footer/>
     </div>
     {includeSidebar &&
