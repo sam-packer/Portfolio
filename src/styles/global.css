@@ -14,6 +14,6 @@
  Do not do on #back-to-top, that has its own styling
  Also, project button is rounded, but not soft. That is custom defined in ProjectLayout
  */
-.btn:not(#back-to-top, #project-button) {
+.btn:not(#back-to-top, #project-button, #popup-button, .btn-ghost) {
     @apply rounded-lg btn-soft;
 }

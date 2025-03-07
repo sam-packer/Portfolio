@@ -4,6 +4,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import PlausibleAnalytics from "../components/PlausibleAnalytics.svelte";
+import Popup from "../components/Popup.svelte";
+import popups from "../data/popups.json";
 import {ClientRouter} from "astro:transitions";
 
 import {SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API} from "../config";
@@ -37,6 +39,7 @@ const {
             <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
                 <slot/>
             </main>
+            <Popup client:only="svelte" popups={popups}/>
         </div>
         <FloatingBackToTop/>
         <Footer/>
