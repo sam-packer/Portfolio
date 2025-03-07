@@ -33,7 +33,8 @@ const {
 <body>
 <div class="bg-base-100 drawer lg:drawer-open">
     <label for="my-drawer"></label><input id="my-drawer" type="checkbox" class="drawer-toggle"/>
-    <SideBar sideBarActiveItemID={sideBarActiveItemID}/>
+    {includeSidebar &&
+            <SideBar sideBarActiveItemID={sideBarActiveItemID}/>}
     <div class="drawer-content bg-base-100">
         <Header/>
         <div class="md:flex md:justify-center">
@@ -46,6 +47,6 @@ const {
         <Footer/>
     </div>
 </div>
-<PlausibleAnalytics client:load/>
+<PlausibleAnalytics client:idle/>
 </body>
 </html>

@@ -1,33 +1,34 @@
-<script>
+<script lang="ts">
     import {crossfade, fade} from 'svelte/transition';
     import {cubicOut} from 'svelte/easing';
     import DetailedExperience from './DetailedExperience.svelte';
     import SummaryExperience from "@components/SummaryExperience.svelte";
 
     // Handle transitions "fading" between one tab to the other
-    const contentKey = "experience-content";
+    const contentKey: string = "experience-content";
 
     const [send, receive] = crossfade({
         duration: 300,
-        fallback(node) {
+        fallback(node: Element) {
             return fade(node, {duration: 300});
         },
         easing: cubicOut
     });
 
-    const storageKey = "onSummaryTab";
+    const storageKey: string = "onSummaryTab";
 
     // Initialize with value from localStorage if it exists
-    let initialValue = false;
+    let initialValue: boolean = false;
+
     if (typeof localStorage !== 'undefined') {
-        const storedValue = localStorage.getItem(storageKey);
+        const storedValue: string | null = localStorage.getItem(storageKey);
         if (storedValue !== null) {
             initialValue = storedValue === "true";
         }
     }
 
     // Set summary to the value if it's in local storage, or the default if not
-    export let summary = initialValue;
+    export let summary: boolean = initialValue;
 
     // Update localStorage whenever toggle is flipped
     $: {

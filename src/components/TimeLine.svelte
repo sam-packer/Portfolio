@@ -1,6 +1,6 @@
-<script>
-    export let title;
-    export let subtitle;
+<script lang="ts">
+    export let title: string;
+    export let subtitle: string;
 </script>
 
 <div class="flex flex-col my-4 first:mt-0 last:mb-0">

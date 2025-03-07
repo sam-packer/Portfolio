@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import TimeLineElement from "./TimeLine.svelte";
 </script>
 

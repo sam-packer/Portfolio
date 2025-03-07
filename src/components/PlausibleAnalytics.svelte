@@ -18,10 +18,15 @@
             });
         }
 
-        attachEventListeners(); // Attach initially
+        onMount(() => {
+            attachEventListeners();
 
-        // Watch for new elements (for client-side navigation)
-        const observer = new MutationObserver(() => attachEventListeners());
-        observer.observe(document.body, {childList: true, subtree: true});
+            // Watch for new elements (for client-side navigation)
+            const observer = new MutationObserver(() => attachEventListeners());
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // Astro client-side navigation event
+            document.addEventListener("astro:after-swap", attachEventListeners);
+        });
     });
 </script>

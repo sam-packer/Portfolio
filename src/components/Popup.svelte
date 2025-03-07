@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import {onDestroy, onMount} from "svelte";
     import {fade} from "svelte/transition";
     import dayjs from "dayjs";
@@ -10,39 +10,52 @@
     dayjs.extend(timezone);
     dayjs.extend(localizedFormat);
 
+    interface Popup {
+        id: string;
+        title: string;
+        message: string;
+        linkText: string;
+        link: string;
+        eventDate: string;
+        location: string;
+        startDate: string;
+        endDate: string;
+    }
+
     // Pass the popups in from the component
-    export let popups = [];
-    let activePopup = null;
-    let localEventDate = "";
+    export let popups: Popup[] = [];
+    let activePopup: Popup | null = null;
+    let localEventDate: string = "";
 
     // Finds a user's cookie by name
-    const getCookie = (name) => {
-        let cookies = document.cookie.split("; ");
-        let cookie = cookies.find(row => row.startsWith(name + "="));
+    const getCookie = (name: string): string | null => {
+        const cookies = document.cookie.split("; ");
+        const cookie = cookies.find(row => row.startsWith(name + "="));
         return cookie ? cookie.split("=")[1] : null;
     };
 
     // Add a new cookie to track whether a popup has been seen with an expiration date of 30 days
-    const setCookie = (name, value, days) => {
+    const setCookie = (name: string, value: string, days: number): void => {
         const expires = dayjs().add(days, 'day').utc().toString();
         document.cookie = `${name}=${value}; expires=${expires}; path=/`;
     };
 
     /* This optimization stores the JSON response in browser storage for an hour
     This is faster than loading the JSON on every page load and filtering it out
-    We must use the user's session storage becasue this needs to run on the client side
-     */
-    const checkPopup = () => {
+    We must use the user's session storage because this needs to run on the client side
+    */
+    const checkPopup = (): void => {
         const now = dayjs().utc();
         const cacheKey = "popup_cache";
 
-        // If we're able to get the cached data from the session storage, process the popups with that
         const cachedData = sessionStorage.getItem(cacheKey);
         if (cachedData) {
-            const { popups: cachedPopups, lastChecked } = JSON.parse(cachedData);
+            const {popups: cachedPopups, lastChecked} = JSON.parse(cachedData) as {
+                popups: Popup[],
+                lastChecked: string
+            };
             const lastCheckedTime = dayjs(lastChecked);
 
-            // Expiration is set to an hour, there is a very small chance a new popup gets added mid navigation
             if (now.diff(lastCheckedTime, "minute") < 60) {
                 processPopups(cachedPopups);
                 return;
@@ -56,14 +69,14 @@
             return now.isAfter(startTime) && now.isBefore(endTime);
         });
 
-        sessionStorage.setItem(cacheKey, JSON.stringify({ popups: validPopups, lastChecked: now }));
+        sessionStorage.setItem(cacheKey, JSON.stringify({popups: validPopups, lastChecked: now}));
 
         processPopups(validPopups);
     };
 
     // Checks to see if the user has already seen the popup. If they haven't seen it, then we display it
-    const processPopups = (validPopups) => {
-        for (let popup of validPopups) {
+    const processPopups = (validPopups: Popup[]): void => {
+        for (const popup of validPopups) {
             if (!getCookie(`popup_seen_${popup.id}`)) {
                 activePopup = popup;
 
@@ -78,9 +91,8 @@
     };
 
     // Closes the popup and adds a cookie to mark the user has seen it
-    const closePopup = () => {
+    const closePopup = (): void => {
         if (activePopup) {
-            // This will only keep the cookie in the browser for 30 days
             setCookie(`popup_seen_${activePopup.id}`, "true", 30);
             activePopup = null;
             window.removeEventListener("keydown", handleKeyDown);
@@ -88,15 +100,15 @@
     };
 
     // Allow the user to press escape to close the popup
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
         if (event.key === "Escape") {
             closePopup();
         }
     };
 
     // Allow them to click outside of the popup overlay to close it
-    const handleOutsideClick = (event) => {
-        if (event.target.classList.contains("popup-overlay")) {
+    const handleOutsideClick = (event: MouseEvent): void => {
+        if ((event.target as HTMLElement).classList.contains("popup-overlay")) {
             closePopup();
         }
     };
