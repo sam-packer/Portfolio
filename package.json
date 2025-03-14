@@ -12,27 +12,28 @@
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.5.6",
-    "@astrojs/mdx": "^4.1.0",
+    "@astrojs/mdx": "^4.2.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/svelte": "^7.0.5",
-    "@tailwindcss/vite": "^4.0.11",
-    "astro": "^5.4.2",
+    "@astrojs/svelte": "^7.0.6",
+    "@tailwindcss/vite": "^4.0.14",
+    "astro": "^5.5.2",
     "astro-embed": "^0.9.0",
     "dayjs": "^1.11.13",
     "sharp": "^0.33.5",
-    "svelte": "^5.22.5",
+    "svelte": "^5.23.0",
     "svelte-turnstile": "^0.10.0",
-    "tailwindcss": "^4.0.11",
+    "tailwindcss": "^4.0.14",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "daisyui": "5.0.0"
+    "daisyui": "5.0.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "esbuild",
+      "sharp"
     ]
   }
 }

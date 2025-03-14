@@ -14,19 +14,17 @@ const {page} = Astro.props;
 ---
 
 <BaseLayout title="Projects | Sam Packer" sideBarActiveItemID="projects">
-    <div class="mb-5">
-        <div class="text-3xl w-full font-bold">Projects</div>
-    </div>
+    <div class="page-title">Projects</div>
 
-    {
-        page.data.length === 0 ? (
-                <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-                    <p class="font-bold">Sorry!</p>
-                    <p>There are no projects to show at the moment. Check back later!</p>
-                </div>
-        ) : (
-            page.data.map((project) => (
-                    <>
+    <div class="card-spacing">
+        {
+            page.data.length === 0 ? (
+                    <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+                        <p class="font-bold">Sorry!</p>
+                        <p>There are no projects to show at the moment. Check back later!</p>
+                    </div>
+            ) : (
+                page.data.map((project) => (
                         <ProjectCard
                                 title={project.data.title}
                                 img={project.data.image}
@@ -38,11 +36,10 @@ const {page} = Astro.props;
                                 referrer="projects"
                                 tags={project.data.tags}
                         />
-                        <div class="divider my-0"/>
-                    </>
-            ))
-        )
-    }
+                ))
+            )
+        }
+    </div>
 
     <div class="flex justify-between">
         {

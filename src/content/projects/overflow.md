@@ -3,7 +3,7 @@ title: Overflow
 description: "A feature-rich Q&A platform replicating StackOverflow, complete with thread and post architecture, advanced search capabilities, pagination for seamless navigation, and a robust user management system supporting full CRUD operations."
 url: https://github.com/sam-packer/Overflow
 pubDate: "May 15, 2024"
-image: "/Overflow.webp"
+image: "../../assets/projects/Overflow.webp"
 tags: [ "C#", "ASP.NET Core", "Razor Pages", "SQLite" ]
 ---
 

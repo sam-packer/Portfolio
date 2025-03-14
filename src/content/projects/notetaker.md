@@ -3,7 +3,7 @@ title: Notetaker
 description: "Use artificial intelligence to take notes for you from video transcripts"
 url: https://github.com/sam-packer/Notetaker
 pubDate: "February 7, 2025"
-image: "/Notetaker.webp"
+image: "../../assets/projects/Notetaker.webp"
 tags: [ "Python", "Artificial Intelligence", "AI Workflows", "OpenAI" ]
 ---
 

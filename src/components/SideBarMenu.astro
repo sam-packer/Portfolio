@@ -4,9 +4,9 @@ const activeClass = "bg-base-300"; // For primary color replace with `active` cl
 ---
 
 <ul class="menu grow shrink menu-md overflow-y-auto w-full">
-    <li><a class={`py-3 text-base rounded-md ${sideBarActiveItemID === "home" ? activeClass : ""}`} id="home" href="/">Home</a></li>
-    <li><a class={`py-3 text-base rounded-md ${sideBarActiveItemID === "projects" ? activeClass : ""}`} id="projects" href="/projects/">Projects</a></li>
-    <li><a class={`py-3 text-base rounded-md ${sideBarActiveItemID === "experience" ? activeClass : ""}`} id="experience" href="/experience/">Experience</a></li>
-    <li><a class={`py-3 text-base rounded-md ${sideBarActiveItemID === "blog" ? activeClass : ""}`} id="blog" href="/blog/">Blog</a></li>
-    <li><a class={`py-3 text-base rounded-md ${sideBarActiveItemID === "contact" ? activeClass : ""}`} id="contact" href="/contact/">Contact</a></li>
+    <li><a class={`sidebar-item ${sideBarActiveItemID === "home" ? activeClass : ""}`} href="/">Home</a></li>
+    <li><a class={`sidebar-item ${sideBarActiveItemID === "projects" ? activeClass : ""}`} href="/projects/">Projects</a></li>
+    <li><a class={`sidebar-item ${sideBarActiveItemID === "experience" ? activeClass : ""}`} href="/experience/">Experience</a></li>
+    <li><a class={`sidebar-item ${sideBarActiveItemID === "blog" ? activeClass : ""}`} href="/blog/">Blog</a></li>
+    <li><a class={`sidebar-item ${sideBarActiveItemID === "contact" ? activeClass : ""}`} href="/contact/">Contact</a></li>
 </ul>

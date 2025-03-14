@@ -5,15 +5,15 @@ import SideBarMenu from "./SideBarMenu.astro";
 const {sideBarActiveItemID} = Astro.props;
 ---
 
-<div class="drawer-side z-40">
+<div class="drawer-side z-40 sidebar-shadow">
     <label for="my-drawer" class="drawer-overlay" aria-label="Navigation bar"></label>
-    <aside class="px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col">
+    <aside class="flex flex-col px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content">
         <div class="w-fit mx-auto mt-5 mb-6">
             <a href="/">
                 <div class="avatar transition ease-in-out hover:scale-[102%] block m-auto">
                     <div class="w-[8.5rem]">
                         <Image class="mask mask-circle" format="webp" loading="eager" width={300} height={300}
-                               src={profile} alt="Headshot"/>
+                               src={profile} alt="Headshot" quality="max"/>
                     </div>
                 </div>
             </a>

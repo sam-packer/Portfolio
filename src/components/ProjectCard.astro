@@ -3,8 +3,8 @@ const {title, img, desc, url, badge, tags, target = "_blank", referrer} = Astro.
 import {Image} from "astro:assets";
 ---
 
-<div class="card rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
-    <a href={url} target={target} aria-label={title} ,
+<div class="card card-border clickable">
+    <a href={url} target={target} aria-label={title}
        data-event={referrer === "home" ? "Project Card From Front Page" : "Project Card From Projects Page"}>
         <div class="hero-content flex-col md:flex-row">
             {
@@ -28,7 +28,7 @@ import {Image} from "astro:assets";
                 </h1>
                 <p class="py-1 text-1xl">{desc}</p>
                 <div class="card-actions justify-start">
-                    {tags && <p class="text-md text-gray-400">Skills and tools used:</p>}
+                    {tags && <p class="text-md text-base-content/75">Skills and tools used:</p>}
                     {
                         tags &&
                         tags.map((tag) => (

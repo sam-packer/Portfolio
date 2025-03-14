@@ -23,19 +23,19 @@ const latest_projects = projects.slice(0, 3);
     <div>
         <div class="text-xl py-1 mt-5">Hello,</div>
         <div class="text-5xl font-bold">I'm Sam Packer</div>
-        <div class="text-3xl py-3">Software Engineer, System Administrator, and Data Analyst</div>
-        <div class="prose min-w-full">
-            <p class="text-lg">
+        <div class="text-3xl py-3 text-primary font-medium">Software Engineer, System Administrator, and Data Analyst</div>
+        <div class="text-base-content/85">
+            <p class="text-lg mb-5.5">
                 Welcome to my website and thank you for visiting! I am graduating in May 2025 with a degree in Computer
-                Information Systems, and honestly, I’m thrilled about the chance to use technology to solve real world
-                business problems. Whether it’s building software, automating tedious processes, or turning data into
+                Information Systems, and honestly, I’m thrilled about the chance to use technology to solve real-world
+                business problems. From building software and automating tedious processes to turning data into
                 actionable insights, I love finding ways to make things work more efficiently.
             </p>
-            <p class="text-lg">
+            <p class="text-lg mb-5.5">
                 During my time at university and through my work experience, I’ve focused on helping teams collaborate
-                more effectively and creating tools that solve real world problems. Whether it’s building automation
-                workflows that save hours of manual work or designing complex applications for business, I enjoy finding
-                ways to make technology work for people, not the other way around.
+                more effectively and creating tools that solve challenging problems. This includes building automation
+                workflows that save hours of manual work and designing complex applications for businesses. I enjoy
+                making technology work for people, not the other way around.
             </p>
             <p class="text-lg">
                 I’d love to chat about how I can bring my strong problem solving mindset to your organization. Feel free
@@ -53,7 +53,7 @@ const latest_projects = projects.slice(0, 3);
                         width="32"
                         height="32"
                         viewBox="0 0 24 24"
-                        style="fill: currentColor;transform: ;msFilter:;"
+                        style="fill: currentColor;"
                 >
                     <path
                             fill-rule="evenodd"
@@ -74,7 +74,7 @@ const latest_projects = projects.slice(0, 3);
                         width="32"
                         height="32"
                         viewBox="0 0 24 24"
-                        style="fill: currentColor;transform: ;msFilter:;"
+                        style="fill: currentColor;"
                 >
                     <circle cx="4.983" cy="5.009" r="2.188"></circle>
                     <path
@@ -89,12 +89,12 @@ const latest_projects = projects.slice(0, 3);
     </div>
 
     <div>
-        <div class="text-3xl w-full font-bold mb-5">My latest projects {"</>"}</div>
+        <div class="page-title">My latest projects {"</>"}</div>
     </div>
 
-    {
-        latest_projects.map((project) => (
-                <>
+    <div class="card-spacing">
+        {
+            latest_projects.map((project) => (
                     <ProjectCard
                             title={project.data.title}
                             desc={project.data.description}
@@ -104,18 +104,17 @@ const latest_projects = projects.slice(0, 3);
                             referrer="home"
                             badge={project.data.badge}
                     />
-                    <div class="divider my-0"/>
-                </>
-        ))
-    }
-
-    <div>
-        <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from my blog ✍️</div>
+            ))
+        }
     </div>
 
-    {
-        latest_posts.map((post) => (
-                <>
+    <div>
+        <div class="page-title mt-10">Latest from my blog ✍️</div>
+    </div>
+
+    <div class="card-spacing">
+        {
+            latest_posts.map((post) => (
                     <BlogCard
                             title={post.data.title}
                             desc={post.data.description}
@@ -125,8 +124,7 @@ const latest_projects = projects.slice(0, 3);
                             referrer="home"
                             badge={post.data.badge}
                     />
-                    <div class="divider my-0"/>
-                </>
-        ))
-    }
+            ))
+        }
+    </div>
 </BaseLayout>

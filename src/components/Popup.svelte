@@ -40,13 +40,13 @@
 
     /* This optimization stores the JSON response in browser storage for an hour
     This is faster than loading the JSON on every page load and filtering it out
-    We must use the user's session storage because this needs to run on the client side
+    We must use the user's local storage because this needs to run on the client side
     */
     const checkPopup = (): void => {
         const now = dayjs().utc();
         const cacheKey = "popup_cache";
 
-        const cachedData = sessionStorage.getItem(cacheKey);
+        const cachedData = localStorage.getItem(cacheKey);
         if (cachedData) {
             const {popups: cachedPopups, lastChecked} = JSON.parse(cachedData) as {
                 popups: Popup[],
@@ -67,7 +67,7 @@
             return now.isAfter(startTime) && now.isBefore(endTime);
         });
 
-        sessionStorage.setItem(cacheKey, JSON.stringify({popups: validPopups, lastChecked: now}));
+        localStorage.setItem(cacheKey, JSON.stringify({popups: validPopups, lastChecked: now}));
 
         processPopups(validPopups);
     };

@@ -1,13 +1,21 @@
 @import "tailwindcss";
 @plugin "daisyui";
-@plugin "@tailwindcss/typography";
-
-/*
- Used to ensure the lines on the experience page end on the last circle
-*/
-.time-line-container > div:last-child .education__time > .education__line {
-    display: none;
+@plugin "daisyui/theme" {
+    name: "emerald";
+    default: true;
+    color-scheme: "light";
+    --color-base-200: oklch(96% 0 0);
+    --color-primary: oklch(70% 0.135 153.45);
+    --depth: 1;
 }
+@plugin "daisyui/theme" {
+    name: "dark";
+    prefersdark: true;
+    color-scheme: "dark";
+    --color-primary: oklch(76.662% 0.135 153.45);
+    --color-primary-content: oklch(33.387% 0.04 162.24);
+}
+@plugin "@tailwindcss/typography";
 
 /*
  Do not do on #back-to-top, that has its own styling
@@ -15,4 +23,38 @@
  */
 .btn:not(#back-to-top, #project-button, #popup-button, .btn-ghost) {
     @apply rounded-lg btn-soft;
+}
+
+/* Signals a card or collapse class is clickable */
+.clickable {
+    @apply hover:shadow-md hover:dark:shadow-xl transition ease-in-out hover:scale-[102%]
+}
+
+/* Custom card properties */
+.card {
+    @apply rounded-xl bg-base-200 border-base-300
+}
+
+/* Wrapper for collapse component */
+.collapse-wrapper {
+    @apply bg-base-200 border-base-300 border rounded-xl
+}
+
+/* Spacing for all cards */
+.card-spacing {
+    @apply flex flex-col gap-4
+}
+
+/* Items in the sidebar */
+.sidebar-item {
+    @apply py-3 text-base rounded-md
+}
+
+/* Consistent page titles */
+.page-title {
+    @apply text-3xl font-bold mb-5 w-full
+}
+
+.sidebar-shadow {
+    @apply shadow-[2px_0_10px_rgba(0,0,0,0.2)] dark:shadow-[6px_0_15px_rgba(0,0,0,0.3)]
 }

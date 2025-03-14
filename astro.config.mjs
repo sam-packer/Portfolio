@@ -1,4 +1,4 @@
-import {defineConfig, passthroughImageService} from 'astro/config';
+import {defineConfig} from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
@@ -11,11 +11,11 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
-    image: {
-        service: passthroughImageService()
-    },
     redirects: {
         "/linkedin": "https://www.linkedin.com/in/samuel-packer",
         "/github": "https://github.com/sam-packer",
+    },
+    prefetch: {
+        prefetchAll: true
     }
 });

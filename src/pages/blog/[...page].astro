@@ -15,7 +15,7 @@ export async function getStaticPaths({paginate}) {
         return postDate.isBefore(currentDate) || postDate.isSame(currentDate);
     });
     filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-    return paginate(filteredPosts, {pageSize: 10});
+    return paginate(filteredPosts, {pageSize: 5});
 }
 
 const {page} = Astro.props;
@@ -23,7 +23,7 @@ const {page} = Astro.props;
 
 <BaseLayout title="Blog | Sam Packer" sideBarActiveItemID="blog">
     <div class="flex mb-5 items-center">
-        <div class="text-3xl font-bold">Blog</div>
+        <div class="page-title !mb-0">Blog</div>
         <a data-event="RSS Button"
            href="/rss.xml"
            target="_blank"
@@ -36,7 +36,7 @@ const {page} = Astro.props;
                     height="36"
                     viewBox="0 -2 24 24"
                     class="hover:fill-current hover:text-primary"
-                    style="fill: currentColor;transform: ;msFilter:;"
+                    style="fill: currentColor;"
             >
                 <path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"></path>
                 <path
@@ -47,15 +47,15 @@ const {page} = Astro.props;
         </a>
     </div>
 
-    {
-        page.data.length === 0 ? (
-                <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-                    <p class="font-bold">Sorry!</p>
-                    <p>There are no blog posts to show at the moment. Check back later!</p>
-                </div>
-        ) : (
-            page.data.map((post) => (
-                    <>
+    <div class="card-spacing">
+        {
+            page.data.length === 0 ? (
+                    <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+                        <p class="font-bold">Sorry!</p>
+                        <p>There are no blog posts to show at the moment. Check back later!</p>
+                    </div>
+            ) : (
+                page.data.map((post) => (
                         <BlogCard
                                 title={post.data.title}
                                 img={post.data.image}
@@ -66,11 +66,10 @@ const {page} = Astro.props;
                                 referrer="blog"
                                 tags={post.data.tags}
                         />
-                        <div class="divider my-0"/>
-                    </>
-            ))
-        )
-    }
+                ))
+            )
+        }
+    </div>
 
     <div class="flex justify-between">
         {

@@ -5,21 +5,20 @@ import {Image} from "astro:assets";
 const {project} = Astro.props;
 ---
 
-<BaseLayout title={project.data.title} description={project.data.description} image={project.data.image}
-            ogType="article">
+<BaseLayout title={project.data.title} description={project.data.description} image={project.data.image.src}
+            ogType="article" sideBarActiveItemID="projects">
     <main class="md:flex md:justify-center">
         <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
             <a class="no-underline flex items-center space-x-2" href="javascript:history.back()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                     style="fill: currentColor;transform: ;msFilter:;">
+                     style="fill: currentColor;">
                     <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                 </svg>
                 <span>Back</span>
             </a>
             {project.data.image &&
                     <Image width={400} height={200} format="webp" loading="eager" src={project.data.image}
-                           alt={project.data.title}
-                           class="mb-3 rounded-lg"/>}
+                           alt={project.data.title} quality="max" class="mb-3 rounded-lg"/>}
             <h1 class="title text-4xl mb-1 font-bold">{project.data.title}</h1>
             <div class="flex flex-wrap gap-2 my-4">
                 {project.data.badge &&
@@ -35,7 +34,7 @@ const {project} = Astro.props;
             </div>
             {
                 project.data.url &&
-                    <a id="project-button" class="btn btn-primary rounded-lg text-base-300 no-underline"
+                    <a id="project-button" class="btn btn-primary rounded-lg no-underline"
                        href={project.data.url} target="_blank">Link to project</a>
             }
             <div class="divider my-2"></div>

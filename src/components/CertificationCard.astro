@@ -1,0 +1,18 @@
+---
+const {url, title} = Astro.props;
+---
+
+<div class="collapse-wrapper clickable">
+    <div class="collapse">
+        {url !== undefined ? (
+                <a class="collapse-title text-lg font-semibold" href={url} target="_blank">
+                    {title}
+                </a>
+        ) : (
+                <div class="flex items-center gap-2 collapse-title text-lg font-semibold">
+                    {title}
+                    <div class="badge badge-success">Obtaining</div>
+                </div>
+        )}
+    </div>
+</div>
