@@ -5,13 +5,21 @@ import {getCollection} from "astro:content";
 import createSlug from "../lib/createSlug"
 import ProjectCard from "../components/ProjectCard.astro";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-dayjs.extend(utc);
+import {TIMEZONE} from "../config";
 
-const currentDate = dayjs();
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const now = dayjs().utc();
+
 const posts = (await getCollection("blog"))
-    .filter(post => dayjs(post.data.pubDate).utc().isBefore(currentDate) || dayjs(post.data.pubDate).utc().isSame(currentDate))
-    .sort((a, b) => dayjs(b.data.pubDate).utc().valueOf() - dayjs(a.data.pubDate).utc().valueOf());
+    .filter(post => {
+        const postDate = dayjs.tz(post.data.pubDate, TIMEZONE).utc();
+        return postDate.isBefore(now, "second") || postDate.isSame(now, "second");
+    })
+    .sort((a, b) => dayjs(b.data.pubDate).valueOf() - dayjs(a.data.pubDate).valueOf());
 
 const projects = (await getCollection("projects")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -23,7 +31,8 @@ const latest_projects = projects.slice(0, 3);
     <div>
         <div class="text-xl py-1 mt-5">Hello,</div>
         <div class="text-5xl font-bold">I'm Sam Packer</div>
-        <div class="text-3xl py-3 text-primary font-medium">Software Engineer, System Administrator, and Data Analyst</div>
+        <div class="text-3xl py-3 text-primary font-medium">Software Engineer, System Administrator, and Data Analyst
+        </div>
         <div class="text-base-content/85">
             <p class="text-lg mb-5.5">
                 Welcome to my website and thank you for visiting! I am graduating in May 2025 with a degree in Computer
@@ -43,8 +52,7 @@ const latest_projects = projects.slice(0, 3);
             </p>
         </div>
         <div class="my-8 flex items-center space-x-3">
-            <a data-event="Front Page GitHub Button"
-               href="https://github.com/sam-packer"
+            <a href="https://github.com/sam-packer"
                target="_blank"
                class="btn btn-lg btn-primary"
                aria-label="GitHub" title="GitHub">
@@ -62,8 +70,7 @@ const latest_projects = projects.slice(0, 3);
                     ></path>
                 </svg>
             </a>
-            <a data-event="Front Page LinkedIn Button"
-               href="https://www.linkedin.com/in/samuel-packer/"
+            <a href="https://www.linkedin.com/in/samuel-packer/"
                target="_blank"
                class="btn btn-lg btn-primary"
                aria-label="LinkedIn"
@@ -99,7 +106,7 @@ const latest_projects = projects.slice(0, 3);
                             title={project.data.title}
                             desc={project.data.description}
                             img={project.data.image}
-                            url={"/projects/" + createSlug(project.data.title, project.slug)}
+                            url={"/projects/" + createSlug(project.data.title)}
                             target="_self"
                             referrer="home"
                             badge={project.data.badge}
@@ -119,7 +126,7 @@ const latest_projects = projects.slice(0, 3);
                             title={post.data.title}
                             desc={post.data.description}
                             img={post.data.image}
-                            url={"/blog/" + createSlug(post.data.title, post.slug)}
+                            url={"/blog/" + createSlug(post.data.title)}
                             target="_self"
                             referrer="home"
                             badge={post.data.badge}

@@ -100,3 +100,14 @@
         </div>
     {/if}
 </form>
+
+<noscript>
+    <div class="alert alert-error mt-3">
+        You need JavaScript enabled to use this form.
+    </div>
+    <style>
+        #contactForm {
+            display: none;
+        }
+    </style>
+</noscript>

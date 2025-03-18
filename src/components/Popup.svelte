@@ -4,6 +4,7 @@
     import dayjs from "dayjs";
     import utc from "dayjs/plugin/utc";
     import timezone from "dayjs/plugin/timezone";
+    import popups from "../data/popups.json";
 
     dayjs.extend(utc);
     dayjs.extend(timezone);
@@ -21,7 +22,6 @@
     }
 
     // Pass the popups in from the component
-    export let popups: Popup[] = [];
     let activePopup: Popup | null = null;
     let localEventDate: string = "";
 
@@ -64,7 +64,7 @@
         const validPopups = popups.filter(p => {
             const startTime = dayjs.utc(p.startDate);
             const endTime = dayjs.utc(p.endDate);
-            return now.isAfter(startTime) && now.isBefore(endTime);
+            return now.isAfter(startTime, "second") && now.isBefore(endTime, "second");
         });
 
         localStorage.setItem(cacheKey, JSON.stringify({popups: validPopups, lastChecked: now}));

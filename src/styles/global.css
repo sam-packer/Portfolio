@@ -5,7 +5,7 @@
     default: true;
     color-scheme: "light";
     --color-base-200: oklch(96% 0 0);
-    --color-primary: oklch(70% 0.135 153.45);
+    --color-primary: oklch(60% 0.135 153.45);
     --depth: 1;
 }
 @plugin "daisyui/theme" {
@@ -53,6 +53,14 @@
 /* Consistent page titles */
 .page-title {
     @apply text-3xl font-bold mb-5 w-full
+}
+
+.badge-card {
+   @apply badge border-current/80 text-base-content/80
+}
+
+.badge-layout {
+    @apply badge border-current no-underline
 }
 
 .sidebar-shadow {

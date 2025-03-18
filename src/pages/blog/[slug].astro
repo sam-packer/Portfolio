@@ -1,22 +1,21 @@
 ---
-import {type CollectionEntry, getCollection} from "astro:content";
+import { getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
 import PostLayout from "../../layouts/PostLayout.astro";
-import createSlug from "../../lib/createSlug"
 
-export async function getStaticPaths() {
-    const postEntries = await getCollection("blog");
-    return postEntries.map((entry) => ({
-        params: {slug: createSlug(entry.data.title, entry.slug)},
-        props: {entry},
-    }));
+const { slug } = Astro.params;
+
+const projectEntries = await getCollection("blog");
+
+const entry = projectEntries.find(
+    (entry) => createSlug(entry.data.title).replace(/\/$/, "") === slug
+);
+
+if (!entry) {
+    return Astro.redirect("/404");
 }
 
-interface Props {
-    entry: CollectionEntry<"blog">;
-}
-
-const {entry} = Astro.props;
-const {Content} = await entry.render();
+const { Content } = await entry.render();
 ---
 
 <PostLayout post={entry}>

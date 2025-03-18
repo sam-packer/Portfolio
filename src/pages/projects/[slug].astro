@@ -3,10 +3,12 @@ import {type CollectionEntry, getCollection} from "astro:content";
 import createSlug from "../../lib/createSlug"
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
     const projectEntries = await getCollection("projects");
     return projectEntries.map((entry) => ({
-        params: {slug: createSlug(entry.data.title, entry.slug)},
+        params: {slug: createSlug(entry.data.title)},
         props: {entry},
     }));
 }

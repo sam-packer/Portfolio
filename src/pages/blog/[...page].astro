@@ -2,23 +2,45 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import {getCollection} from "astro:content";
-import createSlug from "../../lib/createSlug"
+import createSlug from "../../lib/createSlug";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
+import {TIMEZONE} from "../../config";
 
-export async function getStaticPaths({paginate}) {
-    const posts = await getCollection("blog");
-    dayjs.extend(utc);
-    const currentDate = dayjs().utc();
-    const filteredPosts = posts.filter(post => {
-        const postDate = dayjs(post.data.pubDate).utc();
-        return postDate.isBefore(currentDate) || postDate.isSame(currentDate);
-    });
-    filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-    return paginate(filteredPosts, {pageSize: 5});
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const currentDate = dayjs().utc();
+
+const posts = (await getCollection("blog"))
+    .filter(post => {
+        const postDate = dayjs.tz(post.data.pubDate, TIMEZONE).utc();
+        return postDate.isBefore(currentDate, "second") || postDate.isSame(currentDate, "second");
+    })
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const url = new URL(Astro.request.url);
+const pageParam = url.searchParams.get("page");
+
+const currentPage = pageParam ? Number(pageParam) : 1;
+if (isNaN(currentPage) || currentPage < 1) {
+    return Astro.redirect("/404")
 }
 
-const {page} = Astro.props;
+const pageSize = 5;
+
+const startIndex = (currentPage - 1) * pageSize;
+const endIndex = startIndex + pageSize;
+const paginatedPosts = posts.slice(startIndex, endIndex);
+
+const totalPages = Math.ceil(posts.length / pageSize);
+const prevPage = currentPage > 1 ? `/blog?page=${currentPage - 1}` : null;
+const nextPage = currentPage < totalPages ? `/blog?page=${currentPage + 1}` : null;
+
+if (paginatedPosts.length === 0 && currentPage > 1) {
+    return Astro.redirect("/404")
+}
 ---
 
 <BaseLayout title="Blog | Sam Packer" sideBarActiveItemID="blog">
@@ -36,80 +58,63 @@ const {page} = Astro.props;
                     height="36"
                     viewBox="0 -2 24 24"
                     class="hover:fill-current hover:text-primary"
-                    style="fill: currentColor;"
-            >
+                    style="fill: currentColor;">
                 <path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"></path>
-                <path
-                        d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"></path>
-                <circle cx="6" cy="18" r="2"
-                ></circle>
+                <path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"></path>
+                <circle cx="6" cy="18" r="2"></circle>
             </svg>
         </a>
     </div>
 
     <div class="card-spacing">
-        {
-            page.data.length === 0 ? (
-                    <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-                        <p class="font-bold">Sorry!</p>
-                        <p>There are no blog posts to show at the moment. Check back later!</p>
-                    </div>
-            ) : (
-                page.data.map((post) => (
-                        <BlogCard
-                                title={post.data.title}
-                                img={post.data.image}
-                                desc={post.data.description}
-                                url={"/blog/" + createSlug(post.data.title, post.slug)}
-                                target="_self"
-                                badge={post.data.badge}
-                                referrer="blog"
-                                tags={post.data.tags}
-                        />
-                ))
-            )
-        }
+        {paginatedPosts.length === 0 ? (
+                <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+                    <p class="font-bold">Sorry!</p>
+                    <p>There are no blog posts to show at the moment. Check back later!</p>
+                </div>
+        ) : (
+            paginatedPosts.map((post) => (
+                    <BlogCard
+                            title={post.data.title}
+                            img={post.data.image}
+                            desc={post.data.description}
+                            url={`/blog/${createSlug(post.data.title)}`}
+                            target="_self"
+                            badge={post.data.badge}
+                            referrer="blog"
+                            tags={post.data.tags}
+                    />
+            ))
+        )}
     </div>
 
     <div class="flex justify-between">
-        {
-            page.url.prev ? (
-                    <a href={page.url.prev} class="btn btn-ghost my-10 mx-5">
-                        {" "}
-                        <svg
-                                class="h-6 w-6 fill-current md:h-8 md:w-8"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                        >
-                            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
-                        </svg>
-                        {" "}
-                        Newer posts
-                    </a>
-            ) : (
-                    <div/>
-            )
-        }
-        {
-            page.url.next ? (
-                    <a href={page.url.next} class="btn btn-ghost my-10 mx-5">
-                        Older posts{" "}
-                        <svg
-                                class="h-6 w-6 fill-current md:h-8 md:w-8"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                        >
-                            {" "}
-                            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
-                        </svg>
-                    </a>
-            ) : (
-                    <div/>
-            )
-        }
+        {prevPage ? (
+                        <a href={prevPage} class="btn btn-ghost my-10 mx-5">
+                            <svg class="h-6 w-6 fill-current md:h-8 md:w-8"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24">
+                                <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
+                            </svg>
+                            Newer posts
+                        </a>
+            ) :
+                <div/>}
+
+        {nextPage ? (
+                        <a href={nextPage} class="btn btn-ghost my-10 mx-5">
+                            Older posts
+                            <svg class="h-6 w-6 fill-current md:h-8 md:w-8"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24">
+                                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                            </svg>
+                        </a>
+            ) :
+                <div/>}
     </div>
 </BaseLayout>

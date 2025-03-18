@@ -2,7 +2,7 @@
 title: "Why Having Fewer Problems Isn’t Always a Good Thing"
 description: "Problems are an inevitable and natural part of life. Trying to avoid them is counterproductive and can actually set yourself up for failure."
 pubDate: "February 25, 2025 9:02:44 AM"
-image: '../../assets/blog/fewer-problems-wordcloud.png'
+image: "../../assets/blog/fewer-problems-wordcloud.png"
 tags: [ "Leadership", "Management" ]
 ---
 

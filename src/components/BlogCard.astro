@@ -14,42 +14,47 @@ if (blogIndex !== -1) {
 }
 ---
 
-    <div class="card card-border clickable">
-        <a href={url} target={target} aria-label={title}
-           data-event={referrer === "home" ? "Blog Card From Front Page" : "Blog Card From Blog Page"}>
-            <div class="hero-content flex-col md:flex-row">
-                {
-                    img && (
-                                <Image
-                                        src={img}
-                                        width={750}
-                                        height={422}
-                                        format="webp"
-                                        loading="eager"
-                                        alt={title}
-                                        class="max-w-full md:max-w-[13rem] rounded-lg"
-                                />
-                    )
-                }
-                <div class="grow w-full">
-                    <h1 class="text-xl font-bold">
+<article class="card card-border clickable" role="article">
+    <a
+            href={url}
+            target={target}
+            aria-labelledby={title}
+            data-event={referrer === "home" ? "Blog Card From Front Page" : "Blog Card From Blog Page"}
+    >
+        <div class="hero-content flex-col md:flex-row">
+            {img && (
+                    <Image
+                            src={img}
+                            width={750}
+                            height={422}
+                            format="webp"
+                            loading="eager"
+                            alt={title}
+                            class="max-w-full md:max-w-[13rem] rounded-lg"
+                    />
+            )}
+            <div class="grow w-full">
+                <header>
+                    <h1 id={title} class="text-xl font-bold">
                         {title}
                         {badge &&
                                 <div class="badge badge-secondary mx-2">{badge}</div>}
                     </h1>
-                    <p class="py-1 text-1xl">{desc}</p>
-                    <div class="card-actions justify-end">
-                        {
-                            tags &&
-                            tags.map((tag) => (
-                                    <a href={`${tag_url}/${tag}`} class="badge badge-outline" aria-label={`Tag ${tag}`}>
-                                        {tag}
-                                    </a>
-                            ))
-                        }
-                    </div>
+                </header>
+                <p class="py-1 text-1xl">{desc}</p>
+                <div class="card-actions justify-end">
+                    {tags &&
+                        tags.map((tag) => (
+                                <a
+                                        href={`${tag_url}/${tag}`}
+                                        class="badge-card"
+                                        aria-label={`View posts tagged with ${tag}`}
+                                >
+                                    {tag}
+                                </a>
+                        ))}
                 </div>
             </div>
-        </a>
-    </div>
-</div>
+        </div>
+    </a>
+</article>

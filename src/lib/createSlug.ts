@@ -1,8 +1,6 @@
 // Adapted from https://equk.co.uk/2023/02/02/generating-slug-from-title-in-astro/
 
-import {GENERATE_SLUG_FROM_TITLE} from '../config'
-
-export default function (title: string, staticSlug: string) {
+export default function (title: string) {
     const accentsMap = {
         'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
         'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
@@ -10,7 +8,7 @@ export default function (title: string, staticSlug: string) {
         'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u'
     };
     const slug = (
-        !GENERATE_SLUG_FROM_TITLE ? staticSlug : title
+        title
             // remove leading & trailing whitespace
             .trim()
             // replace accented characters

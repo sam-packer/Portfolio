@@ -28,11 +28,11 @@ import {Image} from "astro:assets";
                 </h1>
                 <p class="py-1 text-1xl">{desc}</p>
                 <div class="card-actions justify-start">
-                    {tags && <p class="text-md text-base-content/75">Skills and tools used:</p>}
+                    {tags && <p class="text-md text-base-content/80">Skills and tools used:</p>}
                     {
                         tags &&
                         tags.map((tag) => (
-                                <p class="badge badge-outline" aria-label={`Tag ${tag}`}>
+                                <p class="badge-card" aria-label={`Tag ${tag}`}>
                                     {tag}
                                 </p>
                         ))
