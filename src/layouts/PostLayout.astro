@@ -1,24 +1,13 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
 import {Image} from "astro:assets";
-import {TIMEZONE} from "../config";
 import BackButton from "../components/BackButton.astro";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-dayjs.extend(localizedFormat);
+import ClientTime from "../components/ClientTime.svelte";
 
 const {post} = Astro.props;
-
-const displayDate = dayjs.tz(post.data.pubDate, TIMEZONE).format("LL")
-const updatedDate = dayjs.tz(post.data.revDate, TIMEZONE).format("LL")
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image.src} ogType="article"
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image ? post.data.image.src : ""} ogType="article"
             sideBarActiveItemID="blog">
     <main class="md:flex md:justify-center">
         <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
@@ -27,8 +16,7 @@ const updatedDate = dayjs.tz(post.data.revDate, TIMEZONE).format("LL")
                     <Image width={750} height={422} format="webp" loading="eager" src={post.data.image}
                            alt={post.data.title} quality="max" class="w-full mb-3 rounded-lg"/>}
             <h1 class="title text-4xl mb-1 font-bold">{post.data.title}</h1>
-            {post.data.pubDate &&
-                    <time>{displayDate}</time>}
+            <ClientTime post={post} client:idle/>
             <br/>
             <div class="flex flex-wrap gap-2 my-2">
                 {post.data.badge &&
@@ -42,16 +30,6 @@ const updatedDate = dayjs.tz(post.data.revDate, TIMEZONE).format("LL")
                     ))
                 }
             </div>
-            {
-                post.data.revDate && (
-                            <div>
-                                {" "}
-                                Last updated on
-                                <time>{updatedDate}</time>
-                                {" "}
-                            </div>
-                )
-            }
             <div class="divider my-2"></div>
             <slot/>
         </article>

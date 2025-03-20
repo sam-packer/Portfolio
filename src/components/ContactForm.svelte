@@ -23,19 +23,20 @@
 
         const formData = new FormData(form);
 
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                body: JSON.stringify(Object.fromEntries(formData)),
-                headers: {"Content-Type": "application/json", "Accept": "application/json"},
-            });
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        });
 
-            const data = await response.json();
+        const data = await response.json();
+
+        if (response.status === 200) {
             success = true;
-            responseMessage = data.message;
-        } catch (error) {
+            responseMessage = "Your message has been sent, thank you!"
+        } else {
             success = false;
-            responseMessage = "An error occurred while submitting the form.";
+            responseMessage = data.message;
         }
 
         isVisible = true;

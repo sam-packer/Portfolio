@@ -5,18 +5,15 @@ import {getCollection} from "astro:content";
 import createSlug from "../lib/createSlug"
 import ProjectCard from "../components/ProjectCard.astro";
 import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-import {TIMEZONE} from "../config";
 
 dayjs.extend(utc);
-dayjs.extend(timezone);
 
 const now = dayjs().utc();
 
 const posts = (await getCollection("blog"))
     .filter(post => {
-        const postDate = dayjs.tz(post.data.pubDate, TIMEZONE).utc();
+        const postDate = dayjs(post.data.pubDate).utc();
         return postDate.isBefore(now, "second") || postDate.isSame(now, "second");
     })
     .sort((a, b) => dayjs(b.data.pubDate).valueOf() - dayjs(a.data.pubDate).valueOf());

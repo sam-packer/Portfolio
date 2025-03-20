@@ -1,9 +1,9 @@
 ---
 title: "Upgrading to Astro 5.2"
 description: "Learn how I upgraded to Astro 5.2 with the latest web technologies and rewrote my contact form."
-pubDate: "January 31, 2025 10:45:04 AM"
+pubDate: "2025-01-31T16:45:04Z"
 image: "../../assets/blog/astro_logo.webp"
-tags: [ "Web Development" ]
+tags: [ "Web Development", "Astro" ]
 ---
 
 Web development is a fast-paced field, with frameworks and libraries constantly evolving. Staying up to date with your

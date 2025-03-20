@@ -3,5 +3,4 @@
 
 export const SITE_TITLE = 'Portfolio | Sam Packer';
 export const SITE_DESCRIPTION = 'Sam Packer\'s portfolio with education, work experience, projects, and contact information';
-export const TIMEZONE = "America/Chicago"
 export const TRANSITION_API = true

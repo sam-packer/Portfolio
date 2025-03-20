@@ -1,7 +1,7 @@
 ---
 title: "Redesigning My Experience Page: From Clutter to Clarity"
 description: "Staring at my cluttered, overwhelming experience page, I knew I had to rethink everything. Here’s how I transformed it from a wall of text into a scannable, user-friendly showcase."
-pubDate: "March 11, 2025 9:26:12 PM"
+pubDate: "2025-03-12T02:26:12Z"
 image: "../../assets/blog/experience_redesign.webp"
 tags: [ "Web Development", "UX Design" ]
 ---

@@ -23,23 +23,19 @@ if (isNaN(currentPage) || currentPage < 1) {
 // Get all blog posts and filter for published ones (up to now)
 const now = dayjs().utc();
 const allPosts = await getCollection("blog");
-const publishedPosts = allPosts.filter(post => {
-    const postDate = dayjs(post.data.pubDate).utc();
-    return postDate.isBefore(now, "second") || postDate.isSame(now, "second");
-});
-
-// Filter posts that include the tag
-const filteredPosts = publishedPosts.filter(post =>
-    post.data.tags?.includes(tag)
-);
+const posts = allPosts.filter(post => {
+        const postDate = dayjs(post.data.pubDate).utc();
+        return postDate.isBefore(now, "second") || postDate.isSame(now, "second");
+    }
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).filter(post => post.data.tags?.includes(tag));
 
 // Pagination logic
 const pageSize = 5;
 const startIndex = (currentPage - 1) * pageSize;
 const endIndex = startIndex + pageSize;
-const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+const paginatedPosts = posts.slice(startIndex, endIndex);
 
-const totalPages = Math.ceil(filteredPosts.length / pageSize);
+const totalPages = Math.ceil(posts.length / pageSize);
 const prevPage = currentPage > 1 ? `/blog/tag/${tag}?page=${currentPage - 1}` : null;
 const nextPage = currentPage < totalPages ? `/blog/tag/${tag}?page=${currentPage + 1}` : null;
 
