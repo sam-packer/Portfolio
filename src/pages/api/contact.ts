@@ -5,7 +5,8 @@ const debug = false;
 
 export const POST: APIRoute = async ({request}) => {
     if (!debug) {
-        if (request.headers.get("Origin") !== "https://www.sampacker.com") {
+        const origin = request.headers.get("Origin");
+        if (origin && origin === "https://www.sampacker.com") {
             return new Response(
                 JSON.stringify({message: "You are not allowed to make requests to this endpoint from the specified origin."}),
                 {
@@ -101,16 +102,19 @@ export const POST: APIRoute = async ({request}) => {
 
 export const OPTIONS: APIRoute = ({request}) => {
     const origin = request.headers.get("Origin");
-    if (origin && ["https://www.sampacker.com"].includes(origin)) {
-        return new Response(null, {
-            headers: {
-                "Access-Control-Allow-Headers": request.headers.get("Access-Control-Request-Headers") || "",
-                "Access-Control-Allow-Origin": origin,
-            },
-        });
+
+    if (origin !== "https://www.sampacker.com") {
+        return new Response(null, {status: 403});
     }
-    return new Response(null, {status: 403});
-}
+
+    return new Response(null, {
+        headers: {
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": request.headers.get("Access-Control-Request-Headers") || "*"
+        },
+    });
+};
 
 export const GET: APIRoute = () => {
     return new Response(null, {

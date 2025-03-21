@@ -14,6 +14,19 @@ const blog = defineCollection({
     })
 });
 
+const popups = defineCollection({
+    schema: z.object({
+        id: z.string(),
+        title: z.string(),
+        link: z.string().url(),
+        linkText: z.string(),
+        eventDate: z.coerce.date().optional(),
+        location: z.string().optional(),
+        startDate: z.string(),
+        endDate: z.string(),
+    })
+});
+
 const projects = defineCollection({
     schema: ({image}) => z.object({
         title: z.string(),
@@ -28,4 +41,4 @@ const projects = defineCollection({
     })
 });
 
-export const collections = {blog, projects};
+export const collections = {blog, popups, projects};

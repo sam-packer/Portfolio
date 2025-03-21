@@ -10,8 +10,8 @@
     dayjs.extend(localizedFormat);
     dayjs.extend(timezone);
 
-    const displayDate = post.data.pubDate ?
-        dayjs.tz(post.data.pubDate, dayjs.tz.guess()).format("LL")
+    const displayDate = post.data.pubDate
+        ? dayjs.tz(post.data.pubDate, dayjs.tz.guess()).format("LL")
         : null;
     const updatedDate = post.data.revDate
         ? dayjs.tz(post.data.revDate, dayjs.tz.guess()).format("LL")

@@ -4,86 +4,76 @@
     import dayjs from "dayjs";
     import utc from "dayjs/plugin/utc";
     import timezone from "dayjs/plugin/timezone";
-    import popups from "../data/popups.json";
 
     dayjs.extend(utc);
     dayjs.extend(timezone);
 
-    interface Popup {
-        id: string;
-        title: string;
-        message: string;
-        linkText: string;
-        link: string;
-        eventDate: string;
-        location: string;
-        startDate: string;
-        endDate: string;
-    }
-
-    // Pass the popups in from the component
-    let activePopup: Popup | null = null;
+    // Data variables
+    let popups: any[] = [];
+    let activePopup: any = null;
     let localEventDate: string = "";
+
+    // Fetch the popups from the API and then process them
+    onMount(async () => {
+        try {
+            const response = await fetch("/api/popups.json");
+            if (!response.ok) {
+                return;
+            }
+            popups = await response.json();
+            checkPopup();
+        } catch (err) {
+            return;
+        }
+    });
 
     // Finds a user's cookie by name
     const getCookie = (name: string): string | null => {
         const cookies = document.cookie.split("; ");
-        const cookie = cookies.find(row => row.startsWith(name + "="));
+        const cookie = cookies.find((row) => row.startsWith(name + "="));
         return cookie ? cookie.split("=")[1] : null;
     };
 
     // Add a new cookie to track whether a popup has been seen with an expiration date of 30 days
     const setCookie = (name: string, value: string, days: number): void => {
-        const expires = dayjs().add(days, 'day').utc().toString();
+        const expires = dayjs().add(days, "day").utc().toString();
         document.cookie = `${name}=${value}; expires=${expires}; path=/`;
     };
 
-    /* This optimization stores the JSON response in browser storage for an hour
-    This is faster than loading the JSON on every page load and filtering it out
-    We must use the user's local storage because this needs to run on the client side
+    /* This optimization stores the JSON response in browser storage so we don't make an API request
+    to the /api/popups endpoint on every page load. The cache will be cleared whenever the user leaves the page
     */
     const checkPopup = (): void => {
-        const now = dayjs().utc();
         const cacheKey = "popup_cache";
 
-        const cachedData = localStorage.getItem(cacheKey);
+        const cachedData = sessionStorage.getItem(cacheKey);
         if (cachedData) {
-            const {popups: cachedPopups, lastChecked} = JSON.parse(cachedData) as {
-                popups: Popup[],
-                lastChecked: string
+            const {popups: cachedPopups} = JSON.parse(cachedData) as {
+                popups: any[];
             };
-            const lastCheckedTime = dayjs(lastChecked);
-
-            if (now.diff(lastCheckedTime, "minute") < 60) {
-                processPopups(cachedPopups);
-                return;
-            }
+            processPopups(cachedPopups);
+        } else {
+            sessionStorage.setItem(
+                cacheKey,
+                JSON.stringify({popups: popups})
+            );
+            processPopups(popups);
         }
-
-        // If there is no cache or the cache is older than an hour, then we can filter the popups by date
-        const validPopups = popups.filter(p => {
-            const startTime = dayjs.utc(p.startDate);
-            const endTime = dayjs.utc(p.endDate);
-            return now.isAfter(startTime, "second") && now.isBefore(endTime, "second");
-        });
-
-        localStorage.setItem(cacheKey, JSON.stringify({popups: validPopups, lastChecked: now}));
-
-        processPopups(validPopups);
     };
 
     // Checks to see if the user has already seen the popup. If they haven't seen it, then we display it
-    const processPopups = (validPopups: Popup[]): void => {
+    const processPopups = (validPopups: any[]): void => {
         for (const popup of validPopups) {
-            if (!getCookie(`popup_seen_${popup.id}`)) {
+            if (!getCookie(`popup_seen_${popup.data.id}`)) {
                 activePopup = popup;
-
-                if (activePopup.eventDate) {
-                    localEventDate = dayjs.utc(activePopup.eventDate).local().format("dddd, MMM D, h:mm A");
+                if (activePopup.data.eventDate) {
+                    localEventDate = dayjs
+                        .utc(activePopup.data.eventDate)
+                        .local()
+                        .format("dddd, MMM D, h:mm A");
                 }
-
                 window.addEventListener("keydown", handleKeyDown);
-                return;
+                return activePopup;
             }
         }
     };
@@ -91,7 +81,7 @@
     // Closes the popup and adds a cookie to mark the user has seen it
     const closePopup = (): void => {
         if (activePopup) {
-            setCookie(`popup_seen_${activePopup.id}`, "true", 30);
+            setCookie(`popup_seen_${activePopup.data.id}`, "true", 30);
             activePopup = null;
             window.removeEventListener("keydown", handleKeyDown);
         }
@@ -111,8 +101,6 @@
         }
     };
 
-    onMount(checkPopup);
-
     onDestroy(() => {
         window.removeEventListener("keydown", handleKeyDown);
     });
@@ -122,47 +110,48 @@
     <div on:click={handleOutsideClick} on:keydown={handleKeyDown} role="dialog" aria-modal="true"
          aria-labelledby="popup-title" aria-describedby="popup-message" tabindex="-1"
          class="fixed inset-0 flex items-center justify-center bg-black/50 px-2 md:px-0 z-50 popup-overlay"
-         transition:fade={{duration: 150}}
-    >
+         transition:fade={{duration: 150}}>
         <div class="card card-border card-xl bg-base-100 w-140">
             <div class="card-body">
                 <div class="card-actions justify-between items-center mb-2">
-                    <h2 id="popup-title" class="card-title">{activePopup.title}</h2>
+                    <h2 id="popup-title" class="card-title">{activePopup.data.title}</h2>
                     <button on:click={closePopup} class="btn btn-square btn-sm" aria-label="Close">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 class="h-6 w-6"
-                                fill=currentColor;
+                                fill="currentColor"
                                 viewBox="0 0 24 24"
-                                stroke="currentColor">
+                                stroke="currentColor"
+                        >
                             <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"/>
+                                    d="M6 18L18 6M6 6l12 12"
+                            />
                         </svg>
                     </button>
                 </div>
                 <p id="popup-message">
-                    {@html activePopup.message.replace(/\n/g, "<br>")}
+                    {@html activePopup.rendered.replace(/\r?\n/g, "<br>")}
                 </p>
 
-                {#if activePopup.eventDate || activePopup.location}
+                {#if activePopup.data.eventDate || activePopup.data.location}
                     <div class="pt-2">
                         <p>
-                            {#if activePopup.eventDate}
+                            {#if activePopup.data.eventDate}
                                 📅 Date: {localEventDate}
                             {/if}
-                            <br>
-                            {#if activePopup.location}
-                                💻 Where: {activePopup.location}
+                            <br/>
+                            {#if activePopup.data.location}
+                                💻 Where: {activePopup.data.location}
                             {/if}
                         </p>
                     </div>
                 {/if}
                 <div class="card-actions justify-end mt-2">
                     <button on:click={closePopup} id="popup-button" class="btn btn-primary rounded-lg">
-                        <a href={activePopup.link} target="_blank">{activePopup.linkText}</a>
+                        <a href={activePopup.data.link} target="_blank">{activePopup.data.linkText}</a>
                     </button>
                 </div>
             </div>
