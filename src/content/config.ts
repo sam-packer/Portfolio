@@ -22,8 +22,8 @@ const popups = defineCollection({
         linkText: z.string(),
         eventDate: z.coerce.date().optional(),
         location: z.string().optional(),
-        startDate: z.string(),
-        endDate: z.string(),
+        startDate: z.coerce.date(),
+        endDate: z.coerce.date(),
     })
 });
 
