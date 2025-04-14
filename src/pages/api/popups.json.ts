@@ -5,6 +5,8 @@ import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 
+export const prerender = true;
+
 export const GET: APIRoute = async () => {
     const now = dayjs().utc();
     const popups = (await getCollection("popups")).filter(popup => {

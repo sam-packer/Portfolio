@@ -2,11 +2,17 @@
 title: Mailroom Management System
 description: "I developed a system for apartment complexes, enabling managers to track and notify residents of package deliveries with authentication, email notification support."
 url: https://github.com/sam-packer/Mailroom
+liveDemo: https://mailroom.sampacker.com
+pinned: true
 pubDate: "December 20, 2024"
 image: "../../assets/projects/mailroom_photo.webp"
+badge: "Demo"
 tags: [ "C#", "ASP.NET Core", "Razor Pages", "MySQL" ]
 ---
 import {YouTube} from 'astro-embed';
+import LoginDemoBox from '../../components/LoginDemoBox.astro'
+
+<LoginDemoBox username="admin@mailroom.com" password="admindemo" />
 
 I designed and developed a Mailroom Management System tailored for apartment complexes to track packages and improve resident communication. The system allows property managers to monitor packages that have been delivered and picked up, but also notify residents of deliveries via email notifications.
 

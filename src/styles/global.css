@@ -17,11 +17,13 @@
 }
 @plugin "@tailwindcss/typography";
 
+@custom-variant light (html:not(.dark) &);
+
 /*
  Do not do on #back-to-top, that has its own styling
  Also, project button is rounded, but not soft. That is custom defined in ProjectLayout
  */
-.btn:not(#back-to-top, #project-button, #popup-button, .btn-ghost) {
+.btn:not(#back-to-top, #project-button, #demo-button, #popup-button, .btn-ghost, #login-button, #password-button) {
     @apply rounded-lg btn-soft;
 }
 

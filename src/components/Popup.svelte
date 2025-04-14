@@ -9,22 +9,12 @@
     dayjs.extend(timezone);
 
     // Data variables
-    let popups: any[] = [];
     let activePopup: any = null;
     let localEventDate: string = "";
 
     // Fetch the popups from the API and then process them
     onMount(async () => {
-        try {
-            const response = await fetch("/api/popups.json");
-            if (!response.ok) {
-                return;
-            }
-            popups = await response.json();
-            checkPopup();
-        } catch (err) {
-            return;
-        }
+        await checkPopup();
     });
 
     // Finds a user's cookie by name
@@ -43,7 +33,7 @@
     /* This optimization stores the JSON response in browser storage so we don't make an API request
     to the /api/popups endpoint on every page load. The cache will be cleared whenever the user leaves the page
     */
-    const checkPopup = (): void => {
+    const checkPopup = async (): Promise<void> => {
         const cacheKey = "popup_cache";
 
         const cachedData = sessionStorage.getItem(cacheKey);
@@ -53,11 +43,20 @@
             };
             processPopups(cachedPopups);
         } else {
-            sessionStorage.setItem(
-                cacheKey,
-                JSON.stringify({popups: popups})
-            );
-            processPopups(popups);
+            try {
+                const response = await fetch("/api/popups.json");
+                if (!response.ok) {
+                    return;
+                }
+                const popups = await response.json();
+                sessionStorage.setItem(
+                    cacheKey,
+                    JSON.stringify({popups: popups})
+                );
+                processPopups(popups);
+            } catch (error) {
+                console.error("Failed to fetch popups:", error);
+            }
         }
     };
 
@@ -94,24 +93,17 @@
         }
     };
 
-    // Allow them to click outside of the popup overlay to close it
-    const handleOutsideClick = (event: MouseEvent): void => {
-        if ((event.target as HTMLElement).classList.contains("popup-overlay")) {
-            closePopup();
-        }
-    };
-
     onDestroy(() => {
         window.removeEventListener("keydown", handleKeyDown);
     });
 </script>
 
 {#if activePopup}
-    <div on:click={handleOutsideClick} on:keydown={handleKeyDown} role="dialog" aria-modal="true"
+    <div on:keydown={handleKeyDown} role="dialog" aria-modal="true"
          aria-labelledby="popup-title" aria-describedby="popup-message" tabindex="-1"
          class="fixed inset-0 flex items-center justify-center bg-black/50 px-2 md:px-0 z-50 popup-overlay"
          transition:fade={{duration: 150}}>
-        <div class="card card-border card-xl bg-base-100 w-140">
+        <div class="card card-border card-xl bg-base-100">
             <div class="card-body">
                 <div class="card-actions justify-between items-center mb-2">
                     <h2 id="popup-title" class="card-title">{activePopup.data.title}</h2>
@@ -149,8 +141,8 @@
                         </p>
                     </div>
                 {/if}
-                <div class="card-actions justify-end mt-2">
-                    <button on:click={closePopup} id="popup-button" class="btn btn-primary rounded-lg">
+                <div class="card-actions justify-end mt-4">
+                    <button data-event="Popup: Clicked" id="popup-button" class="btn btn-primary rounded-lg">
                         <a href={activePopup.data.link} target="_blank">{activePopup.data.linkText}</a>
                     </button>
                 </div>

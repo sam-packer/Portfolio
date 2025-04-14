@@ -3,7 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
-import PlausibleAnalytics from "../components/PlausibleAnalytics.svelte";
+import Pusher from "../components/Pusher.svelte";
 import Popup from "../components/Popup.svelte";
 import {ClientRouter} from "astro:transitions";
 import {SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API} from "../config";
@@ -45,6 +45,6 @@ const {
         <Footer/>
     </div>
 </div>
-<PlausibleAnalytics client:idle/>
+<Pusher client:load/>
 </body>
 </html>

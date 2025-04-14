@@ -6,7 +6,7 @@ const debug = false;
 export const POST: APIRoute = async ({request}) => {
     if (!debug) {
         const origin = request.headers.get("Origin");
-        if (!origin || origin !== "https://www.sampacker.com") {
+        if (!origin || origin !== "https://sampacker.com") {
             return new Response(
                 JSON.stringify({message: "You are not allowed to make requests to this endpoint from the specified origin."}),
                 {
@@ -69,10 +69,30 @@ export const POST: APIRoute = async ({request}) => {
         'replyTo': {name, email},
         'subject': `New Contact Form Submission from ${name}`,
         'htmlContent': `
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message}</p>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>New Contact Form Submission</title>
+        </head>
+        <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif;">
+          <div style="display: flex; justify-content: center; padding: 30px 15px;">
+            <div style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); padding: 20px; box-sizing: border-box;">
+       
+              <h2 style="color: #333333; margin-top: 0;">New Contact Form Submission</h2>
+              <div style="border-top: 1px solid #e0e0e0; margin: 20px 0;"></div>
+        
+              <p style="margin: 0 0 10px;"><strong>Name:</strong> ${name}</p>
+              <p style="margin: 0 0 10px;"><strong>Email:</strong> ${email}</p>
+              <p style="margin: 20px 0 5px;"><strong>Message:</strong></p>
+              <p style="background-color: #f9f9f9; padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin: 0;">${message}</p>
+        
+              <div style="border-top: 1px solid #e0e0e0; margin: 30px 0 10px;"></div>
+              <p style="font-size: 12px; color: #888888; text-align: center; margin: 0;">This message was sent via your website contact form.</p>
+            </div>
+          </div>
+        </body>
+        </html>
           `,
     };
 
@@ -107,7 +127,7 @@ export const OPTIONS: APIRoute = ({request}) => {
     if (!debug) {
         const origin = request.headers.get("Origin");
 
-        if (!origin || origin !== "https://www.sampacker.com") {
+        if (!origin || origin !== "https://sampacker.com") {
             return new Response(null, {status: 403});
         }
     }
@@ -122,5 +142,5 @@ export const OPTIONS: APIRoute = ({request}) => {
 };
 
 export async function GET({ redirect }) {
-    return redirect("https://www.sampacker.com", 303);
+    return redirect("https://sampacker.com", 303);
 }

@@ -2,6 +2,7 @@
 title: Spacerouter
 description: "Middleware for AI that uses a neural network classifier to redirect math related questions to Wolfram Alpha instead of a LLM for more accurate results."
 url: "https://github.com/sam-packer/Spacerouter"
+pinned: false
 pubDate: "February 27, 2025"
 image: "../../assets/projects/Spacerouter.webp"
 tags: [ "Python", "Artificial Intelligence", "Neural Network" ]

@@ -5,9 +5,9 @@ import PostLayout from "../../layouts/PostLayout.astro";
 
 const { slug } = Astro.params;
 
-const projectEntries = await getCollection("blog");
+const posts = await getCollection("blog");
 
-const entry = projectEntries.find(
+const entry = posts.find(
     (entry) => createSlug(entry.data.title).replace(/\/$/, "") === slug
 );
 

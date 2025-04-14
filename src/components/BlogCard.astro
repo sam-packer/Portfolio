@@ -1,9 +1,10 @@
 ---
-const {title, img, desc, url, badge, tags, target = "_blank", referrer} = Astro.props;
+import * as url from "node:url";
+const {post, href, target = "_self", referrer} = Astro.props;
 import {Image} from "astro:assets";
 
 // Ensure we always get the base blog URL
-const parts = url.split("/");
+const parts = href.split("/");
 const blogIndex = parts.indexOf("blog"); // Find index of "blog" in URL
 
 let tag_url = "/blog/tag"; // Default if no "blog" segment is found
@@ -16,35 +17,36 @@ if (blogIndex !== -1) {
 
 <article class="card card-border clickable" role="article">
     <a
-            href={url}
+            href={href}
             target={target}
-            aria-labelledby={title}
+            aria-labelledby={post.data.title}
             data-event={referrer === "home" ? "Blog Card From Front Page" : "Blog Card From Blog Page"}
     >
         <div class="hero-content flex-col md:flex-row">
-            {img && (
+            {post.data.image && (
                     <Image
-                            src={img}
+                            src={post.data.image}
                             width={750}
                             height={422}
                             format="webp"
                             loading="eager"
-                            alt={title}
+                            decoding="async"
+                            alt={post.data.title}
                             class="max-w-full md:max-w-[13rem] rounded-lg"
                     />
             )}
             <div class="grow w-full">
                 <header>
-                    <h1 id={title} class="text-xl font-bold">
-                        {title}
-                        {badge &&
-                                <div class="badge badge-secondary mx-2">{badge}</div>}
+                    <h1 id={post.data.title} class="text-xl font-bold">
+                        {post.data.title}
+                        {post.data.badge &&
+                                <div class="badge badge-secondary mx-2">{post.data.badge}</div>}
                     </h1>
                 </header>
-                <p class="py-1 text-1xl">{desc}</p>
+                <p class="py-1 text-1xl">{post.data.description}</p>
                 <div class="card-actions justify-end">
-                    {tags &&
-                        tags.map((tag) => (
+                    {post.data.tags && referrer === "blog" &&
+                        post.data.tags.map((tag) => (
                                 <a
                                         href={`${tag_url}/${tag}`}
                                         class="badge-card"

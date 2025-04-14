@@ -2,7 +2,7 @@
 const {url, title} = Astro.props;
 ---
 
-<div class="collapse-wrapper clickable">
+<div class=`collapse-wrapper ${url !== undefined ? "clickable" : "pointer-events-none"}`>
     <div class="collapse">
         {url !== undefined ? (
                 <a

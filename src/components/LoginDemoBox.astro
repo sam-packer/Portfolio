@@ -1,0 +1,73 @@
+---
+const { username, password } = Astro.props;
+---
+
+<div class="bg-base-200 shadow-lg rounded-xl p-6 not-prose">
+    <div class="flex flex-col">
+        <span class="font-bold text-2xl mb-4">🔐 Demo Login</span>
+        <div class="text-lg space-y-4">
+            <div class="join w-full">
+                <label class="input join-item flex-1">
+                    <span class="text opacity-50">Username</span>
+                    <input id="username-input" type="text" value={username} class="w-full" readonly />
+                </label>
+                <button
+                        id="login-button"
+                        class="btn btn-secondary btn-soft join-item"
+                        onclick="copyWithFeedback('username-input', 'login-button')"
+                >
+                    Copy
+                </button>
+            </div>
+
+            <div class="join w-full">
+                <label class="input join-item flex-1">
+                    <span class="text opacity-50">Password</span>
+                    <input id="password-input" type="text" value={password} class="w-full" readonly />
+                </label>
+                <button
+                        id="password-button"
+                        class="btn btn-secondary btn-soft join-item"
+                        onclick="copyWithFeedback('password-input', 'password-button')"
+                >
+                    Copy
+                </button>
+            </div>
+        </div>
+
+        <p class="text-sm mt-4 text-base-content/70">
+            Use these credentials to explore the demo environment.
+        </p>
+    </div>
+</div>
+
+<!-- Hide buttons if JS is disabled -->
+<noscript>
+    <style>
+        #login-button,
+        #password-button {
+            display: none;
+        }
+    </style>
+</noscript>
+
+<script is:inline>
+    function copyWithFeedback(inputId, buttonId) {
+        const input = document.getElementById(inputId);
+        const button = document.getElementById(buttonId);
+
+        if (input && button) {
+            navigator.clipboard.writeText(input.value).then(() => {
+                const original = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('btn-success');
+                setTimeout(() => {
+                    button.textContent = original;
+                    button.classList.remove('btn-success');
+                }, 2000);
+            }).catch((err) => {
+                console.error('Copy failed', err);
+            });
+        }
+    }
+</script>

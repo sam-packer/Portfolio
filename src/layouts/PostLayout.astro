@@ -13,7 +13,7 @@ const {post} = Astro.props;
         <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
             <BackButton/>
             {post.data.image &&
-                    <Image width={750} height={422} format="webp" loading="eager" src={post.data.image}
+                    <Image format="webp" loading="eager" decoding="async" src={post.data.image}
                            alt={post.data.title} quality="max" class="w-full mb-3 rounded-lg"/>}
             <h1 class="title text-4xl mb-1 font-bold">{post.data.title}</h1>
             <ClientTime post={post} client:idle/>

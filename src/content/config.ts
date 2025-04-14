@@ -12,6 +12,13 @@ const blog = defineCollection({
             message: "tags must be unique",
         }).optional()
     })
+        .refine(
+            (data) => !data.revDate || data.pubDate <= data.revDate,
+            {
+                message: "pubDate must be before or equal to revDate",
+                path: ["pubDate"],
+            }
+        )
 });
 
 const popups = defineCollection({
@@ -25,13 +32,22 @@ const popups = defineCollection({
         startDate: z.coerce.date(),
         endDate: z.coerce.date(),
     })
+        .refine(
+            (data) => data.startDate <= data.endDate,
+            {
+                message: "startDate must be before or equal to endDate",
+                path: ["startDate"],
+            }
+        )
 });
 
 const projects = defineCollection({
     schema: ({image}) => z.object({
         title: z.string(),
         description: z.string(),
-        url: z.string().url(),
+        url: z.string().url().optional(),
+        liveDemo: z.string().url().optional(),
+        pinned: z.boolean(),
         pubDate: z.coerce.date(),
         image: image().optional(),
         badge: z.string().optional(),

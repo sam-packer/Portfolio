@@ -72,14 +72,10 @@ if (paginatedPosts.length === 0 && currentPage > 1) {
         ) : (
             paginatedPosts.map((post) => (
                     <BlogCard
-                            title={post.data.title}
-                            img={post.data.image}
-                            desc={post.data.description}
-                            url={`/blog/${createSlug(post.data.title)}`}
+                            post={post}
+                            href={`/blog/${createSlug(post.data.title)}`}
                             target="_self"
-                            badge={post.data.badge}
                             referrer="blog"
-                            tags={post.data.tags}
                     />
             ))
         )}

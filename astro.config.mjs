@@ -1,6 +1,6 @@
 import {defineConfig} from 'astro/config';
 import mdx from '@astrojs/mdx';
-import cloudflare from '@astrojs/cloudflare';
+import node from '@astrojs/node';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import tailwindcss from "@tailwindcss/vite";
@@ -20,7 +20,7 @@ export default defineConfig({
         prefetchAll: true
     },
     output: 'server',
-    adapter: cloudflare({
-        imageService: 'cloudflare'
-    })
+    adapter: node({
+        mode: 'standalone',
+    }),
 });

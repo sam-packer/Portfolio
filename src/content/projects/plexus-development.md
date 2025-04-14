@@ -2,6 +2,7 @@
 title: Plexus Development
 description: "I led a team of 8 developers to rewrite and optimize a Minecraft plugin, improving efficiency, reducing bloat, making it modular, and integrating robust infrastructure with CI/CD pipelines and documentation. Directed development strategy, implemented scalable solutions with database and caching systems, and authored comprehensive project documentation."
 url: https://plex.us.org
+pinned: false
 pubDate: "May 20, 2022"
 image: "../../assets/projects/plexlogo.webp"
 tags: [ "Java", "Python", "React", "MySQL", "Redis", "Jenkins CI/CD", "Sonatype Nexus", "Agile", "SCRUM" ]

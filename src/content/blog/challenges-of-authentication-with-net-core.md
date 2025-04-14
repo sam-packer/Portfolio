@@ -1,7 +1,7 @@
 ---
 title: "Challenges of Authentication with .NET Core"
 description: "This blog posts describes the challenges with getting JWT authentication working with .NET Core and Razor Pages."
-pubDate: "2024-01-24T17:17:23Z"
+pubDate: "2025-01-24T17:17:23Z"
 image: "../../assets/blog/JWT.webp"
 tags: [ "ASP.NET Core", "Authentication" ]
 ---

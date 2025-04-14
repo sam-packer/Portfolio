@@ -6,225 +6,255 @@ export const prerender = true;
 ---
 
 <BaseLayout title="Experience | Sam Packer" sideBarActiveItemID="experience">
-    <div id="summary" class="mb-10">
-        <p class="page-title">Summary</p>
+    <div class="flex flex-col gap-10">
+        <section id="summary">
+            <p class="page-title">Summary</p>
 
-        <div class="text-lg text-base-content prose min-w-full text-left lg:text-justify mb-10">
-            <p>
-                I’ve always been drawn to the idea of using technology to advance businesses and their needs. Whether
-                it’s improving the workflow for developers and businesses or building applications that are intuitive
-                and fast to use, I enjoy developing solutions that matter. Over the years, I’ve tackled many complex
-                challenges and needs, such as leading disaster recovery efforts that have saved thousands of dollars,
-                orchestrating complex database designs to steer smarter decision making, and building websites that are
-                a delight to use.
-            </p>
-            <p>
-                My passions and goals are not just about building things to achieve a task. It’s about going the extra
-                mile to create solutions that feel intuitive, meaningful, and are a joy to interact with. I want to
-                build systems and tools that don’t just achieve the bare minimum for a task, but make people’s lives
-                better. The impact that I create by putting other people's needs is the most important factor when
-                developing a new process and fuels my purpose and passion.
-            </p>
-        </div>
-    </div>
+            <div class="text-lg text-base-content prose-2xl text-left lg:text-justify">
+                <p>
+                    I’ve always been drawn to the idea of using technology to advance businesses and their needs.
+                    Whether
+                    it’s improving the workflow for developers and businesses or building applications that are
+                    intuitive
+                    and fast to use, I enjoy developing solutions that matter. Over the years, I’ve tackled many complex
+                    challenges and needs, such as leading disaster recovery efforts that have saved thousands of
+                    dollars,
+                    orchestrating complex database designs to steer smarter decision making, and building websites that
+                    are
+                    a delight to use.
+                </p>
+                <p>
+                    My passions and goals are not just about building things to achieve a task. It’s about going the
+                    extra
+                    mile to create solutions that feel intuitive, meaningful, and are a joy to interact with. I want to
+                    build systems and tools that don’t just achieve the bare minimum for a task, but make people’s lives
+                    better. The impact that I create by putting other people's needs is the most important factor when
+                    developing a new process and fuels my purpose and passion.
+                </p>
+            </div>
+        </section>
 
-    <div id="education" class="mb-10">
-        <p class="page-title">Education</p>
-
-        <ExperienceCard
-                title="B.B.A. in Computer Information Systems"
-                subtitle="August 2021 to May 2025 at West Texas A&M University, Canyon, TX">
-            West Texas A&M University is
-            <a class="underline"
-               href="https://www.wtamu.edu/academics/college-business/about-us/cidm-department/abet-accreditation.html">
-                ABET</a>
-            and
-            <a class="underline"
-               href="https://www.wtamu.edu/academics/college-business/about-us/accreditation.html">
-                AACSB</a>
-            accredited. AACSB is the highest standard of accreditation for business schools. Fewer than 40 business
-            schools are both ABET and AACSB accredited.
-        </ExperienceCard>
-    </div>
-
-    <div id="professional-experience" class="mb-10">
-        <p class="page-title">Professional Experience</p>
-
-        <div class="card-spacing">
-            <ExperienceCard
-                    title="Process Optimization Developer"
-                    subtitle="February 2024 to Present at Education Credit Union, Amarillo, TX"
-            >
-                <ul class="list-disc list-inside">
-                    <li>Directed a migration to GitHub with effective leadership, boosting teamwork by 60%.</li>
-                    <li>Built CI/CD pipelines with GitHub Actions, cutting deployment time by 40%.</li>
-                    <li>Built automation workflows with APIs, improving employee efficiency by 500%.</li>
-                    <li>Analyzed data with Python to drive informed business decisions, saving $5000 monthly.</li>
-                    <li>Extracted and transformed SQL data for reporting and analytics, reducing time wasted by 40%.
-                    </li>
-                    <li>Engineered a high-performance mass file deletion program, reducing crash rate by 30%.</li>
-                </ul>
-            </ExperienceCard>
+        <section id="education">
+            <p class="page-title">Education</p>
 
             <ExperienceCard
-                    title="Student Worker"
+                    title="B.B.A. in Computer Information Systems"
                     subtitle="August 2021 to May 2025 at West Texas A&M University, Canyon, TX"
             >
-                <ul class="list-disc list-inside">
-                    <li>Assisted in managing a fleet of gaming computers, decreasing technical errors by 35%.</li>
-                    <li>Directed disaster recovery efforts for a bowling center, saving $7,000.</li>
-                </ul>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-lg font-medium text-primary">Honors & Awards</p>
+                        <ul class="list-disc list-inside ml-4 text-base">
+                            <li>Beta Gamma Sigma</li>
+                            <li>Upsilon Pi Epsilon</li>
+                            <li>Buffteks Leadership Award</li>
+                            <li>2025 Carey Lyles Emerging Technology Award</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-base font-semibold">GPA: 3.93 / 4.00</p>
+
+                    <div class="divider"></div>
+
+                    <div class="text-base">
+                        <p>
+                            West Texas A&M University is
+                            <a class="underline text-primary hover:text-primary-focus"
+                               href="https://www.wtamu.edu/academics/college-business/about-us/cidm-department/abet-accreditation.html"
+                               target="_blank">
+                                ABET</a> and
+                            <a class="underline text-primary hover:text-primary-focus"
+                               href="https://www.wtamu.edu/academics/college-business/about-us/accreditation.html"
+                               target="_blank">AACSB</a> accredited.
+                        </p>
+                        <p>
+                            AACSB is the highest standard of accreditation for business schools. Fewer than 40 business
+                            schools are both ABET and AACSB accredited.
+                        </p>
+                    </div>
+                </div>
             </ExperienceCard>
+        </section>
 
-            <ExperienceCard
-                    title="Website Designer"
-                    subtitle="Summer 2022 at Mission 2540, Amarillo, TX"
-            >
-                <ul class="list-disc list-inside">
-                    <li>Redesigned website, enhancing usability and integrating a donation system to boost
-                        fundraising.
-                    </li>
-                    <li>
-                        Developed a polished prototype praised for its clarity and impact as part of a business
-                        proposal.
-                    </li>
-                </ul>
-            </ExperienceCard>
+        <section id="professional-experience">
+            <p class="page-title">Professional Experience</p>
 
-            <ExperienceCard
-                    title="Webmaster"
-                    subtitle="April 2016 to May 2019 at Winds Across the Bay, El Cerrito, CA"
-            >
-                <ul class="list-disc list-inside">
-                    <li>Created a new website from scratch, increasing SEO and engagement rate by 55%.</li>
-                    <li>Directed social media platforms, boosting engagement by 200%.</li>
-                    <li>Designed program fliers for organization events, saving $5,000 yearly.</li>
-                    <li>Engineered a new hosting solution, reducing operational costs by $3,600 yearly.</li>
-                </ul>
-            </ExperienceCard>
-        </div>
-    </div>
+            <div class="card-spacing">
+                <ExperienceCard
+                        title="Process Optimization Developer"
+                        subtitle="February 2024 to Present at Education Credit Union, Amarillo, TX"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>Directed a migration to GitHub with effective leadership, boosting teamwork by 60%.</li>
+                        <li>Built CI/CD pipelines with GitHub Actions, cutting deployment time by 40%.</li>
+                        <li>Built automation workflows with APIs, improving employee efficiency by 500%.</li>
+                        <li>Analyzed data with Python to drive informed business decisions, saving $5000 monthly.</li>
+                        <li>Extracted and transformed SQL data for reporting and analytics, reducing time wasted by 40%.
+                        </li>
+                        <li>Engineered a high-performance mass file deletion program, reducing crash rate by 30%.</li>
+                    </ul>
+                </ExperienceCard>
 
-    <div id="volunteer-experience" class="mb-10">
-        <p class="page-title">Extracurriculars and Volunteer Experience</p>
+                <ExperienceCard
+                        title="Student Worker"
+                        subtitle="August 2021 to March 2025 at West Texas A&M University, Canyon, TX"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>Assisted in managing a fleet of gaming computers, decreasing technical errors by 35%.</li>
+                        <li>Directed disaster recovery efforts for a bowling center, saving $7,000.</li>
+                    </ul>
+                </ExperienceCard>
 
-        <div class="card-spacing">
-            <ExperienceCard
-                    title="Buffteks Guest Lecturer"
-                    subtitle="November 2024 at West Texas A&M University, Canyon, TX"
-            >
-                <ul class="list-disc list-inside">
-                    <li>
-                        Delivered a guest lecture on Linux security fundamentals while emphasizing practical, modern
-                        tools.
-                    </li>
-                    <li>Showcased Caddy webserver its features and ease of use, reducing learning curve for
-                        developers.
-                    </li>
-                </ul>
-            </ExperienceCard>
+                <ExperienceCard
+                        title="Website Designer"
+                        subtitle="Summer 2022 at Mission 2540, Amarillo, TX"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>Redesigned website, enhancing usability and integrating a donation system to boost
+                            fundraising.
+                        </li>
+                        <li>
+                            Developed a polished prototype praised for its clarity and impact as part of a business
+                            proposal.
+                        </li>
+                    </ul>
+                </ExperienceCard>
 
-            <ExperienceCard
-                    title="Intern"
-                    subtitle="January 2018 to March 2020 at The Center for Independent Living, Alameda, CA"
-            >
-                <ul class="list-disc list-inside">
-                    <li>Managed a technology help service for seniors with disabilities, expanding the program’s
-                        outreach by
-                        80%.
-                    </li>
-                    <li>Researched the best assistive technology products for disabilities, increasing reach by 230%.
-                    </li>
-                </ul>
-            </ExperienceCard>
+                <ExperienceCard
+                        title="Webmaster"
+                        subtitle="April 2016 to May 2019 at Winds Across the Bay, El Cerrito, CA"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>Created a new website from scratch, increasing SEO and engagement rate by 55%.</li>
+                        <li>Directed social media platforms, boosting engagement by 200%.</li>
+                        <li>Designed program fliers for organization events, saving $5,000 yearly.</li>
+                        <li>Engineered a new hosting solution, reducing operational costs by $3,600 yearly.</li>
+                    </ul>
+                </ExperienceCard>
+            </div>
+        </section>
 
-            <ExperienceCard
-                    title="Teacher Assistant"
-                    subtitle="May 2019 to August 2019 at Albany Senior Center, Albany, CA"
-            >
-                <ul class="list-disc list-inside">
-                    <li>Directed a support class for seniors, fostering the use of digital technology.</li>
-                    <li>Reprovisioned non-functional computers at an organization, supporting accessibility for seniors.
-                    </li>
-                </ul>
-            </ExperienceCard>
-        </div>
-    </div>
+        <section id="volunteer-experience">
+            <p class="page-title">Extracurriculars and Volunteer Experience</p>
 
-    <div id="certifications" class="mb-10">
-        <p class="page-title">Certifications</p>
+            <div class="card-spacing">
+                <ExperienceCard
+                        title="Buffteks Guest Lecturer"
+                        subtitle="November 2024 at West Texas A&M University, Canyon, TX"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>
+                            Delivered a guest lecture on Linux security fundamentals while emphasizing practical, modern
+                            tools.
+                        </li>
+                        <li>Showcased Caddy webserver its features and ease of use, reducing learning curve for
+                            developers.
+                        </li>
+                    </ul>
+                </ExperienceCard>
 
-        <div class="card-spacing">
-            <CertificationCard
-                    title="Google Agile Project Management"
-                    url="https://coursera.org/verify/KKA8DPCJ83WV"/>
+                <ExperienceCard
+                        title="Intern"
+                        subtitle="January 2018 to March 2020 at The Center for Independent Living, Alameda, CA"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>Managed a technology help service for seniors with disabilities, expanding the program’s
+                            outreach by
+                            80%.
+                        </li>
+                        <li>Researched the best assistive technology products for disabilities, increasing reach by
+                            230%.
+                        </li>
+                    </ul>
+                </ExperienceCard>
 
-            <CertificationCard
-                    title="IBM AI Product Manager Professional Certification"
-                    url="https://coursera.org/verify/professional-cert/EUULQWK6DCW8"/>
+                <ExperienceCard
+                        title="Teacher Assistant"
+                        subtitle="May 2019 to August 2019 at Albany Senior Center, Albany, CA"
+                >
+                    <ul class="list-disc list-inside">
+                        <li>Directed a support class for seniors, fostering the use of digital technology.</li>
+                        <li>Reprovisioned non-functional computers at an organization, supporting accessibility for
+                            seniors.
+                        </li>
+                    </ul>
+                </ExperienceCard>
+            </div>
+        </section>
 
-            <CertificationCard
-                    title="Meta Front-End Web Developer Professional Certification"
-                    obtaining={true}/>
+        <section id="certifications">
+            <p class="page-title">Certifications</p>
 
-            <CertificationCard
-                    title="MyEducator Excel Educator"
-                    url="/MyEducator Excel.pdf"/>
-        </div>
-    </div>
+            <div class="card-spacing">
+                <CertificationCard
+                        title="Google Agile Project Management"
+                        url="https://coursera.org/verify/KKA8DPCJ83WV"/>
 
-    <div id="skills">
-        <p class="page-title">Skills</p>
+                <CertificationCard
+                        title="IBM AI Product Manager Professional Certification"
+                        url="https://coursera.org/verify/professional-cert/EUULQWK6DCW8"/>
 
-        <div class="card-spacing">
-            <ExperienceCard title="Languages & Frameworks">
-                <ul class="list-disc list-inside md:columns-4 columns-2">
-                    <li><a href="https://www.java.com/">Java</a></li>
-                    <li><a href="https://dotnet.microsoft.com/en-us/languages/csharp">C#</a></li>
-                    <li><a href="https://www.python.org/">Python</a></li>
-                    <li>HTML / CSS</li>
-                    <li>JavaScript</li>
-                    <li><a href="https://mariadb.org/">MySQL / MariaDB</a></li>
-                    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-                    <li><a href="https://redis.io/">Redis</a></li>
-                    <li><a href="https://dotnet.microsoft.com/en-us/apps/aspnet">ASP.NET Core</a></li>
-                    <li><a href="https://react.dev/">React</a></li>
-                    <li><a href="https://angular.dev/">Angular</a></li>
-                    <li><a href="https://astro.build/">AstroJS</a></li>
-                    <li><a href="https://svelte.dev/">Svelte</a></li>
-                    <li><a href="https://tailwindcss.com/">Tailwind CSS</a></li>
-                </ul>
-            </ExperienceCard>
+                <CertificationCard
+                        title="Meta Front-End Web Developer Professional Certification"
+                        obtaining={true}/>
 
-            <ExperienceCard title="Infrastructure & System Administration">
-                <ul class="list-disc list-inside md:columns-3 columns-2">
-                    <li><a href="https://www.debian.org/">Ubuntu / Debian</a></li>
-                    <li><a href="https://www.microsoft.com/en-us/windows-server">Windows Server</a></li>
-                    <li><a href="https://aws.amazon.com/">AWS</a></li>
-                    <li><a href="https://www.hetzner.com/">Hetzner</a></li>
-                    <li><a href="https://workspace.google.com/">Google Workspace</a></li>
-                    <li>Active Directory / Entra ID</li>
-                    <li>Group Policy Management</li>
-                    <li><a href="https://www.okta.com/">Okta / Auth0</a></li>
-                    <li><a href="https://fusionauth.io/">FusionAuth</a></li>
-                    <li><a href="https://www.apereo.org/programs/software/cas">Central Authentication Service (CAS)</a>
-                    </li>
-                    <li><a href="https://duo.com/">Duo MFA</a></li>
-                </ul>
-            </ExperienceCard>
+                <CertificationCard
+                        title="MyEducator Excel Educator"
+                        url="/MyEducator Excel.pdf"/>
+            </div>
+        </section>
 
-            <ExperienceCard title="Methodologies & Tools">
-                <ul class="list-disc list-inside md:columns-4 columns-2">
-                    <li><a href="https://github.com/">Git / GitHub</a></li>
-                    <li><a href="https://github.com/features/actions">GitHub Actions</a></li>
-                    <li><a href="https://www.docker.com/">Docker</a></li>
-                    <li><a href="https://www.jenkins.io/">Jenkins CI/CD</a></li>
-                    <li><a href="https://www.sonatype.com/products/sonatype-nexus-repository">Nexus Repository</a></li>
-                    <li>Agile</li>
-                    <li><a href="https://www.scrum.org/">SCRUM</a></li>
-                    <li>LEAN</li>
-                </ul>
-            </ExperienceCard>
-        </div>
+        <section id="skills">
+            <p class="page-title">Skills</p>
+
+            <div class="card-spacing">
+                <ExperienceCard title="Languages & Frameworks">
+                    <ul class="list-disc list-inside md:columns-4 columns-2">
+                        <li>Java</li>
+                        <li>C#</li>
+                        <li>Python</li>
+                        <li>HTML / CSS</li>
+                        <li>JavaScript</li>
+                        <li>MySQL / MariaDB</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                        <li>ASP.NET Core</li>
+                        <li>React</li>
+                        <li>Astro</li>
+                        <li>Svelte</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </ExperienceCard>
+
+                <ExperienceCard title="Infrastructure & System Administration">
+                    <ul class="list-disc list-inside md:columns-3 columns-2">
+                        <li>Ubuntu / Debian</li>
+                        <li>Windows Server</li>
+                        <li>AWS</li>
+                        <li>Hetzner</li>
+                        <li>Google Workspace</li>
+                        <li>Active Directory / Entra ID</li>
+                        <li>Group Policy Management</li>
+                        <li>Okta / Auth0</li>
+                        <li>FusionAuth</li>
+                        <li>Central Authentication Service (CAS)</li>
+                        <li>Duo MFA</li>
+                    </ul>
+                </ExperienceCard>
+
+                <ExperienceCard title="Methodologies & Tools">
+                    <ul class="list-disc list-inside md:columns-4 columns-2">
+                        <li>Git / GitHub</li>
+                        <li>GitHub Actions</li>
+                        <li>Docker</li>
+                        <li>Jenkins CI/CD</li>
+                        <li>Nexus Repository</li>
+                        <li>Agile</li>
+                        <li>SCRUM</li>
+                        <li>LEAN</li>
+                    </ul>
+                </ExperienceCard>
+            </div>
+        </section>
     </div>
 </BaseLayout>
