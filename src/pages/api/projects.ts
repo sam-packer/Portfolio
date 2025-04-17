@@ -1,8 +1,6 @@
 import type {APIRoute} from "astro";
 import {getCollection} from "astro:content";
 
-export const prerender = true;
-
 export const GET: APIRoute = async () => {
     const projects = await getCollection("projects");
     projects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());

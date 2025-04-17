@@ -1,21 +1,22 @@
 ---
-import { getCollection } from "astro:content";
-import createSlug from "../../lib/createSlug";
+import {getCollection, render} from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
 
-const { slug } = Astro.params;
+const {slug} = Astro.params;
 
 const posts = await getCollection("blog");
 
 const entry = posts.find(
-    (entry) => createSlug(entry.data.title).replace(/\/$/, "") === slug
+    (entry) => {
+        return entry.id === slug;
+    }
 );
 
 if (!entry) {
     return Astro.redirect("/404");
 }
 
-const { Content } = await entry.render();
+const {Content} = await render(entry);
 ---
 
 <PostLayout post={entry}>

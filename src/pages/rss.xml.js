@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import {SITE_TITLE, SITE_DESCRIPTION} from "../config";
 import {getCollection} from "astro:content";
-import createSlug from "../lib/createSlug.js";
 
 dayjs.extend(utc);
 
@@ -28,7 +27,7 @@ export async function GET(context) {
             title: post.data.title,
             pubDate: dayjs(post.data.pubDate).utc().toString(),
             description: post.data.description,
-            link: `/blog/${createSlug(post.data.title)}`,
+            link: `/blog/${post.id}/`,
         })),
     });
 }

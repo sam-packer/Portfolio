@@ -18,17 +18,17 @@
     "@astrojs/sitemap": "^3.3.0",
     "@astrojs/svelte": "^7.0.10",
     "@tailwindcss/vite": "^4.1.4",
-    "astro": "^5.7.0",
+    "astro": "^5.7.3",
     "astro-embed": "^0.9.0",
     "dayjs": "^1.11.13",
-    "svelte": "^5.27.0",
+    "svelte": "^5.27.2",
     "svelte-turnstile": "^0.10.0",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "daisyui": "5.0.20"
+    "daisyui": "5.0.25"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
