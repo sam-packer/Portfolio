@@ -1,16 +1,11 @@
 ---
-import {getCollection, render} from "astro:content";
+import {getEntry} from "astro:content";
+import {render} from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
 
 const {slug} = Astro.params;
 
-const posts = await getCollection("blog");
-
-const entry = posts.find(
-    (entry) => {
-        return entry.id === slug;
-    }
-);
+const entry = await getEntry("blog", slug);
 
 if (!entry) {
     return Astro.redirect("/404");
