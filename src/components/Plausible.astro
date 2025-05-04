@@ -1,0 +1,33 @@
+<script type="module" astro:page-load>
+    function attachEventListeners() {
+        document.querySelectorAll("[data-event]").forEach((element) => {
+            if (!(element instanceof HTMLElement)) return;
+            if (element.dataset.tracked === "true") return;
+
+            element.dataset.tracked = "true";
+
+            element.addEventListener("click", () => {
+                const eventName = element.getAttribute("data-event");
+                if (window.plausible && eventName) {
+                    window.plausible(eventName);
+                }
+            }, {passive: true});
+        });
+    }
+
+    attachEventListeners();
+
+    // Setup a debounced MutationObserver
+    let debounceTimeout = null;
+
+    const observer = new MutationObserver(() => {
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);
+        }
+        debounceTimeout = setTimeout(() => {
+            attachEventListeners();
+        }, 100);
+    });
+
+    observer.observe(document.body, {childList: true, subtree: true});
+</script>

@@ -1,16 +1,11 @@
 ---
 import Arrow from "../assets/icons/back.svg";
+
+const {href = "/"} = Astro.props;
 ---
 
-<noscript>
-    <style>
-        #back-button {
-            display: none;
-        }
-    </style>
-</noscript>
-
-<a id="back-button" class="no-underline flex items-center space-x-2" href="javascript:history.back()">
+<a id="back-button" class="no-underline flex items-center space-x-2" href={href}
+   onclick="if(history.length > 1){history.back(); return false;}">
     <Arrow width={32} height={32} fill="currentColor"/>
     <span>Back</span>
 </a>

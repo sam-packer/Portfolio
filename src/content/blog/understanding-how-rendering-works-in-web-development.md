@@ -27,7 +27,7 @@ The simplest example that I can come up with for explaining SSG is the copyright
 const today = new Date();
 ---
 
-    <footer class="footer footer-horizontal footer-center block mb-5 pt-10 pb-2">
+    <footer>
         Copyright &copy; {today.getFullYear()} Sam Packer
     </footer>
 ```
@@ -59,16 +59,7 @@ const posts = (await getCollection("blog"))
 
     {
         posts.map((post) => (
-            <BlogCard
-                title={post.data.title}
-                img={post.data.image}
-                desc={post.data.description}
-                url={`/blog/${createSlug(post.data.title)}`}
-                target="_self"
-                badge={post.data.badge}
-                referrer="blog"
-                tags={post.data.tags}
-            />
+              <BlogCard post={post}/>
         ))
     }
 ```
@@ -98,8 +89,8 @@ the actual content area. Here's what the code for my contact page looks like:
 import ContactForm from "../components/ContactForm.svelte";
 ---
 
-<h2 class="page-title">Contact</h2>
-<p class="text-base">Thank you for reaching out! You may contact me using this form below. I will get back to you
+<h2>Contact</h2>
+<p>Thank you for reaching out! You may contact me using this form below. I will get back to you
     shortly. You may also contact me on LinkedIn as well.</p>
 
 <ContactForm client:load/>

@@ -3,11 +3,11 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
-import Pusher from "../components/Pusher.svelte";
 import Popup from "../components/Popup.svelte";
-import {ClientRouter} from "astro:transitions";
-import {SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API} from "../config";
+import {SITE_TITLE, SITE_DESCRIPTION} from "../config";
 import FloatingBackToTop from "../components/FloatingBackToTop.astro";
+import {ClientRouter} from "astro:transitions";
+import Plausible from "../components/Plausible.astro";
 
 const {
     image,
@@ -25,8 +25,7 @@ const {
 <head>
     <BaseHead title={title} description={description} image={image} ogType={ogType}/>
     <title>{SITE_TITLE}</title>
-    {TRANSITION_API &&
-            <ClientRouter/>}
+    <ClientRouter/>
 </head>
 <body>
 <div class="bg-base-100 drawer lg:drawer-open">
@@ -44,7 +43,7 @@ const {
         <FloatingBackToTop/>
         <Footer/>
     </div>
+    <Plausible/>
 </div>
-<Pusher client:load/>
 </body>
 </html>

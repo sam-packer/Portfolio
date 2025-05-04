@@ -12,30 +12,30 @@
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.5.6",
-    "@astrojs/mdx": "^4.2.4",
-    "@astrojs/node": "^9.2.0",
+    "@astrojs/mdx": "^4.2.6",
+    "@astrojs/node": "^9.2.1",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.0",
-    "@astrojs/svelte": "^7.0.10",
-    "@tailwindcss/vite": "^4.1.4",
-    "astro": "^5.7.3",
+    "@astrojs/sitemap": "^3.3.1",
+    "@astrojs/svelte": "^7.0.13",
+    "@tailwindcss/vite": "^4.1.5",
+    "astro": "^5.7.10",
     "astro-embed": "^0.9.0",
     "dayjs": "^1.11.13",
-    "svelte": "^5.27.2",
-    "svelte-turnstile": "^0.10.0",
-    "tailwindcss": "^4.1.4",
+    "svelte": "^5.28.2",
+    "svelte-turnstile": "^0.11.0",
+    "tailwindcss": "^4.1.5",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "daisyui": "5.0.25"
+    "daisyui": "5.0.35"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "puppeteer",
-      "sharp",
-      "workerd"
+      "sharp"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }

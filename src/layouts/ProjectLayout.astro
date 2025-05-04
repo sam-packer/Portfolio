@@ -10,7 +10,7 @@ const {project} = Astro.props;
             image={project.data.image ? project.data.image.src : ""} ogType="article" sideBarActiveItemID="projects">
     <main class="md:flex md:justify-center">
         <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
-            <BackButton/>
+            <BackButton href="/blog/"/>
             {project.data.image &&
                     <Image width={400} format="webp" loading="eager" decoding="async"
                            src={project.data.image}
@@ -32,7 +32,7 @@ const {project} = Astro.props;
                 {
                     project.data.liveDemo &&
                         <a id="demo-button" class="btn btn-secondary rounded-lg no-underline"
-                           href={project.data.liveDemo} target="_blank">Link to live demo</a>
+                           href={project.data.liveDemo} target="_blank">View Demo</a>
                 }
                 {
                     project.data.url &&
