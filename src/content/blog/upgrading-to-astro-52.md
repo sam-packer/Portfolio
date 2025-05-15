@@ -3,6 +3,7 @@ title: "Upgrading to Astro 5.2"
 description: "Learn how I upgraded to Astro 5.2 with the latest web technologies and rewrote my contact form."
 pubDate: "2025-01-31T16:45:04Z"
 image: "../../assets/blog/astro_logo.webp"
+author: [ "Sam Packer" ]
 tags: [ "Web Development", "Astro" ]
 ---
 

@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({params}) => {
         return postDate.isBefore(currentDate, "second") || postDate.isSame(currentDate, "second");
     });
 
-    const post = posts.find((post) => post.slug === slug);
+    const post = posts.find((post) => post.id === slug);
 
     if (!post) {
         return new Response(JSON.stringify({error: "Post not found"}), {
@@ -30,7 +30,6 @@ export const GET: APIRoute = async ({params}) => {
         id: post.id,
         data: post.data,
         body: post.body,
-        slug: post.slug,
     };
 
     return new Response(JSON.stringify(filteredPost), {

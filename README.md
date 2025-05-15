@@ -29,7 +29,6 @@ Visit: [https://www.sampacker.com](https://www.sampacker.com)
 │   ├── pages/           # Astro page routes
 │   └── styles/          # Global CSS styling
 ├── astro.config.mjs     # Astro site config
-├── tailwind.config.cjs  # Tailwind CSS configuration
 ├── tsconfig.json        # TypeScript configuration
 └── package.json         # Project metadata and scripts
 

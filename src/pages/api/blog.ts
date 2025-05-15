@@ -19,7 +19,6 @@ export const GET: APIRoute = async () => {
         id: post.id,
         data: post.data,
         body: post.body,
-        slug: post.slug,
     }));
 
     return new Response(JSON.stringify(filteredPosts), {

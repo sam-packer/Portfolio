@@ -4,18 +4,17 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import Popup from "../components/Popup.svelte";
-import {SITE_TITLE, SITE_DESCRIPTION} from "../config";
 import FloatingBackToTop from "../components/FloatingBackToTop.astro";
 import {ClientRouter} from "astro:transitions";
 import Plausible from "../components/Plausible.astro";
 
 const {
     image,
-    title = SITE_TITLE,
-    description = SITE_DESCRIPTION,
+    title = "Portfolio",
+    description = "Sam Packer's portfolio, showcasing experience, projects, contact info, and blog. BBA from WTAMU (May 2025), incoming MEng graduate student at Duke University.",
     includeSidebar = true,
     sideBarActiveItemID,
-    ogType,
+    ogType = "website",
 } = Astro.props;
 ---
 
@@ -24,7 +23,7 @@ const {
 
 <head>
     <BaseHead title={title} description={description} image={image} ogType={ogType}/>
-    <title>{SITE_TITLE}</title>
+    <title>{title} | Sam Packer</title>
     <ClientRouter/>
 </head>
 <body>

@@ -9,6 +9,7 @@
         data: {
             pubDate: string;
             revDate?: string;
+            author?: string[];
         };
     }
 
@@ -71,18 +72,32 @@
 
     onMount(() => {
         if (timeEl) {
-            timeEl.addEventListener("paste", registerTrigger);
+            timeEl.addEventListener("paste", registerTrigger, {passive: true});
             if (window.innerWidth <= 768) {
-                timeEl.addEventListener("click", registerTrigger);
+                timeEl.addEventListener("click", registerTrigger, {passive: true});
             }
         }
     });
 </script>
 
 {#if displayDate && updatedDate}
-    <time bind:this={timeEl}>{displayDate} (last updated on {updatedDate})</time>
-{:else}
-    <time bind:this={timeEl}>{displayDate}</time>
+    <time bind:this={timeEl}>
+        {displayDate} (last updated on {updatedDate})
+        {#if post.data.author?.length} — by
+            {#each post.data.author as author, i}
+                <a href={`/blog/author/${author}`}>{author}</a>{i < post.data.author.length - 1 ? ', ' : ''}
+            {/each}
+        {/if}
+    </time>
+{:else if displayDate}
+    <time bind:this={timeEl}>
+        {displayDate}
+        {#if post.data.author?.length} — by
+            {#each post.data.author as author, i}
+                <a href={`/blog/author/${author}`}>{author}</a>{i < post.data.author.length - 1 ? ', ' : ''}
+            {/each}
+        {/if}
+    </time>
 {/if}
 
 {#if toastMessage}

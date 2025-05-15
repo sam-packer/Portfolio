@@ -12,8 +12,8 @@ import Next from "@assets/icons/next.svg";
 
 dayjs.extend(utc);
 
-// Read the tag from the dynamic route parameter
-const tag = Astro.params.tag ?? "";
+// Read the author from the dynamic route parameter
+const author = Astro.params.author ?? "";
 
 // Read the page number from the query parameter (default to 1 if not present)
 const url = new URL(Astro.request.url);
@@ -31,7 +31,7 @@ const posts = allPosts.filter(post => {
         const postDate = dayjs(post.data.pubDate).utc();
         return postDate.isBefore(now, "second") || postDate.isSame(now, "second");
     }
-).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).filter(post => post.data.tags?.includes(tag));
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).filter(post => post.data.author?.includes(author));
 
 // Pagination logic
 const pageSize = 5;
@@ -40,15 +40,15 @@ const endIndex = startIndex + pageSize;
 const paginatedPosts = posts.slice(startIndex, endIndex);
 
 const totalPages = Math.ceil(posts.length / pageSize);
-const prevPage = currentPage > 1 ? `/blog/tag/${tag}?page=${currentPage - 1}` : null;
-const nextPage = currentPage < totalPages ? `/blog/tag/${tag}?page=${currentPage + 1}` : null;
+const prevPage = currentPage > 1 ? `/blog/author/${author}?page=${currentPage - 1}` : null;
+const nextPage = currentPage < totalPages ? `/blog/author/${author}?page=${currentPage + 1}` : null;
 
 if (paginatedPosts.length === 0 && currentPage > 1) {
     return Astro.redirect("/404")
 }
 ---
 
-<BaseLayout title={"Tag - " + tag}
+<BaseLayout title={"Author - " + author}
             description="Read insightful articles by Sam Packer covering software development, tech trends, project experiences, and practical tips. Stay updated and enhance your skills through engaging, informative content."
             sideBarActiveItemID="blog">
     <div class="mb-3">
@@ -56,7 +56,7 @@ if (paginatedPosts.length === 0 && currentPage > 1) {
     </div>
 
     <div class="flex mb-5 items-center">
-        <div class="page-title !mb-0">Tag - {tag}</div>
+        <div class="page-title !mb-0">Author - {author}</div>
         <a data-event="RSS Button"
            href="/rss.xml"
            target="_blank"
@@ -71,9 +71,9 @@ if (paginatedPosts.length === 0 && currentPage > 1) {
         {
             paginatedPosts.length === 0 ? (
                             <div class="bg-base-200 border border-error text-error rounded-xl p-6 text-sm shadow-md">
-                                <p class="font-semibold text-base">Tag not found</p>
+                                <p class="font-semibold text-base">Author not found</p>
                                 <p class="mt-1 text-base-content">
-                                    We couldn't find any posts with that tag. Please check the URL or explore other posts from the blog.
+                                    We couldn't find any posts by that author. Please check the URL or explore other posts from the blog.
                                 </p>
                             </div>
                 ) :

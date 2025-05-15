@@ -4,6 +4,7 @@ description: "This blog posts describes the challenges with getting JWT authenti
 pubDate: "2025-01-24T17:17:23Z"
 revDate: "2025-05-05T19:08:15Z"
 image: "../../assets/blog/JWT.webp"
+author: [ "Sam Packer" ]
 tags: [ "ASP.NET Core", "Authentication" ]
 ---
 

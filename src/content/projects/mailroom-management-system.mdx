@@ -9,7 +9,7 @@ image: "../../assets/projects/mailroom_photo.webp"
 badge: "Demo"
 tags: [ "C#", "ASP.NET Core", "Razor Pages", "MySQL" ]
 ---
-import {YouTube} from 'astro-embed';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 import LoginDemoBox from '../../components/LoginDemoBox.astro'
 
 <LoginDemoBox username="admin@mailroom.com" password="admindemo" />
@@ -17,13 +17,13 @@ import LoginDemoBox from '../../components/LoginDemoBox.astro'
 I designed and developed a Mailroom Management System tailored for apartment complexes to track packages and improve resident communication. The system allows property managers to monitor packages that have been delivered and picked up, but also notify residents of deliveries via email notifications.
 
 #### User Management
-A robust user management module allows property managers to create, update, and manage resident information.
+A robust user management page allows property managers to create, update, and manage resident information.
 
 #### Package Management
 Both managers and residents can track the status of packages, which reduces wasted space by packages that haven't been picked up.
 
 #### Authentication & Security
-I implemented JWT (JSON Web Token) authentication with .NET to ensure secure access to the system, safeguarding sensitive data and user information.
+I implemented cookie based authentication with .NET to ensure secure access to the system. Sensitive data and user information is safeguarded and passwords are hashed.
 
 #### Email Notification Support
 I integrated email notifications for residents to alert them when their packages are delivered to the front office and ready for pickup. This gives residents clearer communication while reducing wasted space in the office for property managers.

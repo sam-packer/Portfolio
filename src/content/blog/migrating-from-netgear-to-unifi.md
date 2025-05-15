@@ -3,6 +3,7 @@ title: "Migrating from Netgear to UniFi"
 description: "Upgrading my network from Netgear to UniFi came with its challenges, but the result is a faster, more reliable, and feature-rich setup that was worth the effort. Come with me through the journey of upgrading my home network!"
 pubDate: "2025-02-12T22:40:50Z"
 image: "../../assets/blog/UniFi.jpg"
+author: [ "Sam Packer" ]
 tags: [ "System Administration", "Networking" ]
 ---
 

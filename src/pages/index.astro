@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 import GitHub from "../assets/icons/github.svg";
-import LinkedIn from "../assets/icons/linkedin.svg";
+import LinkedIn from "../assets/icons/linkedin-button.svg";
 
 dayjs.extend(utc);
 
@@ -26,7 +26,7 @@ const latest_posts = posts.slice(0, 3);
 const latest_projects = projects.slice(0, 3);
 ---
 
-<BaseLayout sideBarActiveItemID="home">
+<BaseLayout title="Home" sideBarActiveItemID="home">
     <div class="flex flex-col gap-8">
         <section id="intro">
             <div>
@@ -38,13 +38,15 @@ const latest_projects = projects.slice(0, 3);
                 <div class="prose prose-2xl">
                     <p class="text-lg">
                         <strong>Leveraging technology to solve real-world business challenges isn’t just about
-                            efficiency, it’s about empowering people.</strong> As a graduating May 2025 Computer
-                        Information Systems student, I specialize in automating business processes, building flexible
-                        and modern software that "just works," and translating data into meaningful stories. My work
-                        includes developing internal tools that streamline operations for cross-functional teams,
-                        eliminate repetitive work, and yield measurable cost savings by untangling operational knots. My
-                        focus is on solutions that don’t just solve problems, but create space for teams to focus on
-                        what actually moves the needle.
+                            efficiency, it’s about empowering people.</strong> As a Computer Information Systems
+                        graduate and incoming graduate at Duke in Artificial Intelligence, I aim to bridge cutting edge
+                        AI advancements with tangible business outcomes. My focus is on translating complex tools into
+                        actionable strategies that empower organizations. I specialize in automating business processes,
+                        building flexible and modern software that "just works," and turning data into meaningful
+                        stories. My work includes developing internal tools that streamline operations for
+                        cross-functional teams, eliminate repetitive work, and yield measurable cost savings by
+                        untangling operational knots. My focus is on solutions that don’t just solve problems, but
+                        create space for teams to focus on what actually moves the needle.
                     </p>
                 </div>
                 <div class="flex items-center gap-4 pt-4">

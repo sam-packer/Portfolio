@@ -9,7 +9,6 @@ export const GET: APIRoute = async () => {
         id: project.id,
         data: project.data,
         body: project.body,
-        slug: project.slug,
     }));
 
     return new Response(JSON.stringify(filteredProjects), {

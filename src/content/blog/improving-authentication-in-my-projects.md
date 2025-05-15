@@ -3,6 +3,7 @@ title: "Improving Authentication In My Projects"
 description: "Rebuilding authentication in two of my applications didn’t just fix bugs, it revealed how security shapes seamless user experiences"
 pubDate: "2025-05-05T19:08:15Z"
 image: "../../assets/blog/authentication_header.webp"
+author: [ "Sam Packer" ]
 tags: [ "Authentication" ]
 ---
 

@@ -4,6 +4,7 @@ description: "Staring at my cluttered, overwhelming experience page, I knew I ha
 pubDate: "2025-03-12T02:26:12Z"
 revDate: "2025-04-22T16:04:19Z"
 image: "../../assets/blog/experience_redesign.webp"
+author: [ "Sam Packer" ]
 tags: [ "Web Development", "UX Design" ]
 ---
 

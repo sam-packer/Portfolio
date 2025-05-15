@@ -71,7 +71,7 @@
                         .local()
                         .format("dddd, MMM D, h:mm A");
                 }
-                window.addEventListener("keydown", handleKeyDown);
+                window.addEventListener("keydown", handleKeyDown, {passive: true});
                 return activePopup;
             }
         }

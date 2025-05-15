@@ -3,6 +3,7 @@ title: "Managing Yourself Comes Before Managing Others"
 description: "Getting my AI Product Manager certification has reminded me of the importance of managing yourself before you can effectively manage others."
 pubDate: "2025-02-02T18:25:11Z"
 image: "../../assets/blog/managing-yourself-wordcloud.png"
+author: [ "Sam Packer" ]
 tags: [ "Leadership", "Management" ]
 ---
 

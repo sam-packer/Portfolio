@@ -3,6 +3,7 @@ title: "Choosing the Right Hosting: Speed & Simplicity vs. Control & Customizati
 description: "Discover the pros and cons of edge services and VPS hosting to make the best choice for your website’s speed, scalability, and performance."
 pubDate: "2025-02-10T19:39:55Z"
 image: "../../assets/blog/Datacenter.webp"
+author: [ "Sam Packer" ]
 tags: [ "Web Development", "Website Performance", "Hosting Comparison" ]
 ---
 

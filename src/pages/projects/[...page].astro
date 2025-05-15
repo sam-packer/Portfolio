@@ -28,15 +28,20 @@ export async function getStaticPaths({ paginate }) {
 const {page} = Astro.props;
 ---
 
-<BaseLayout title="Projects | Sam Packer" sideBarActiveItemID="projects">
+<BaseLayout title="Projects"
+            description="Explore Sam Packer's portfolio of impactful projects in software development, web design, and technology solutions. Discover innovative applications, detailed case studies, and real-world examples of creative problem solving."
+            sideBarActiveItemID="projects">
     <div class="page-title">Projects</div>
 
     <div class="card-spacing">
         {
             page.data.length === 0 ? (
-                    <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-                        <p class="font-bold">Sorry!</p>
-                        <p>There are no projects to show at the moment. Check back later!</p>
+                    <div class="bg-base-200 border border-error text-error rounded-xl p-6 text-sm shadow-md">
+                        <p class="font-semibold text-base">No projects available</p>
+                        <p class="mt-1 text-base-content">
+                            It looks like there aren’t any projects to show just yet. New content will be published
+                            soon, stay tuned!
+                        </p>
                     </div>
             ) : (
                 page.data.map((project) => (

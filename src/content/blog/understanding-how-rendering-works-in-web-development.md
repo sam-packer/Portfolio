@@ -3,6 +3,7 @@ title: "Understanding How Rendering Works in Web Development"
 description: "Are the three different types of rendering within web development confusing you? Read this post to demystify this crucial knowledge."
 pubDate: "2025-03-19T02:02:10Z"
 image: "../../assets/blog/astro_rendering.webp"
+author: [ "Sam Packer" ]
 tags: [ "Web Development", "Astro" ]
 ---
 

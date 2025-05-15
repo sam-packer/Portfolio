@@ -13,29 +13,28 @@
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.5.6",
     "@astrojs/mdx": "^4.2.6",
-    "@astrojs/node": "^9.2.1",
+    "@astrojs/netlify": "^6.3.3",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.1",
+    "@astrojs/sitemap": "^3.4.0",
     "@astrojs/svelte": "^7.0.13",
-    "@tailwindcss/vite": "^4.1.5",
-    "astro": "^5.7.10",
-    "astro-embed": "^0.9.0",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^5.7.13",
     "dayjs": "^1.11.13",
-    "svelte": "^5.28.2",
-    "svelte-turnstile": "^0.11.0",
-    "tailwindcss": "^4.1.5",
+    "svelte": "^5.30.1",
+    "tailwindcss": "^4.1.7",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "daisyui": "5.0.35"
+    "daisyui": "5.0.35",
+    "svelte-turnstile": "^0.11.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "esbuild",
-      "puppeteer",
       "sharp"
     ]
   },
-  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }

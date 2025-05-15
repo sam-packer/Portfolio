@@ -4,10 +4,15 @@ import {Image} from "astro:assets";
 import BackButton from "../components/BackButton.astro";
 import ClientTime from "../components/ClientTime.svelte";
 
+import Facebook from "../assets/icons/facebook.svg";
+import LinkedIn from "../assets/icons/linkedin.svg";
+import X from "../assets/icons/x.svg";
+
 const {post} = Astro.props;
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image ? post.data.image.src : ""} ogType="article"
+<BaseLayout title={post.data.title} description={post.data.description}
+            image={post.data.image ? post.data.image.src : ""} ogType="article"
             sideBarActiveItemID="blog">
     <main class="md:flex md:justify-center">
         <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
@@ -32,6 +37,29 @@ const {post} = Astro.props;
             </div>
             <div class="divider my-2"></div>
             <slot/>
+            <div class="divider"></div>
+            <!-- Sharing Section -->
+            <h2 class="text-lg font-semibold not-prose mb-2">Share this post:</h2>
+            <div class="flex items-center gap-1">
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url.href}`} target="_blank"
+                   class="group transition duration-200 hover:bg-[#1877F2] p-2 px-2 rounded"
+                   rel="noopener noreferrer" aria-label="Share on Facebook">
+                    <!-- Facebook Icon -->
+                    <Facebook width={32} height={32} class="text-[#1877F2] group-hover:text-white transition duration-200" fill="currentColor"/>
+                </a>
+                <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(Astro.url.href)}&text=I just read this great post: ${post.data.title}. Check it out!`}
+                   class="group transition duration-200 hover:bg-black p-2 px-2 rounded"
+                   target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+                    <!-- X Icon -->
+                    <X width={32} height={32} class="text-black dark:text-white group-hover:text-white transition duration-200" fill="currentColor"/>
+                </a>
+                <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=I just read this great post: ${post.data.title}. Check it out!`}
+                   class="group transition duration-200 hover:bg-[#0072b1] p-2 px-2 rounded"
+                   target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+                    <!-- LinkedIn Icon -->
+                    <LinkedIn width={32} height={32} class="text-[#0072b1] group-hover:text-white transition duration-200" fill="currentColor"/>
+                </a>
+            </div>
         </article>
     </main>
 </BaseLayout>

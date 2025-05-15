@@ -2,7 +2,9 @@
 title: "Celebrating Milestones at WTAMU"
 description: "I am honored to have been recognized for academic and leadership excellence at the 2025 Paul and Virginia Engler College of Business Symposium with multiple honors and awards."
 pubDate: "2025-04-24T01:02:43Z"
+revDate: "2025-05-07T23:29:10Z"
 image: "../../assets/blog/business_symposium_2025.webp"
+author: [ "Sam Packer" ]
 tags: [ "Honors" ]
 ---
 
@@ -13,3 +15,5 @@ I’m also humbled to receive the Buffteks Leadership Award, presented by Carl Z
 I want to extend a heartfelt thank you to everyone throughout my time at West Texas A&M University. I have had the wonderful opportunity to meet many incredible students and supportive faculty who have all made my journey unforgettable, with a special gratitude to Carl Zhang and Liang Chen for your belief in my potential through these awards. Your encouragement has been a driving force.
 
 This fall, I’ll begin a new chapter in my life by pursuing a Master's in Artificial Intelligence at Duke University. I'm honored to have this opportunity to continue my education and promote positive change for everyone. Technology is my passion, but none of this would be possible without the inspiring community at WTAMU, which has fueled my curiosity and growth.
+
+[Click here to read the official WTAMU press release.](https://www.wtamu.edu/news/2025/05/student-community-leaders-recognized-by-wts-engler-college-of-business.html)

@@ -65,6 +65,7 @@
                 name="name"
                 class="input validator input-bordered w-full"
                 placeholder="Enter your name"
+                autocomplete="off"
                 required
         />
     </fieldset>
@@ -76,6 +77,7 @@
                 name="email"
                 class="input validator input-bordered w-full"
                 placeholder="Enter your email"
+                autocomplete="off"
                 required
         />
     </fieldset>
@@ -87,6 +89,7 @@
                 class="textarea validator textarea-bordered w-full"
                 placeholder="Enter your message"
                 rows="5"
+                autocomplete="off"
                 required
         ></textarea>
     </fieldset>

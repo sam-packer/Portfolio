@@ -3,12 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 export const prerender = true;
 ---
 
-<BaseLayout title="Error 404" includeSidebar={false}>
+<BaseLayout title="Error 500" includeSidebar={false}>
     <div class="bg-base-200 border border-error text-error rounded-xl p-6 shadow-md">
-        <p class="page-title">Error 404</p>
+        <p class="page-title">Error 500</p>
         <p class="prose">
-            We couldn’t find the page you were looking for. It may have been moved, renamed, or never existed.
-            Try heading back to the homepage.
+            We're experiencing an internal issue. This usually doesn’t happen, and it’s likely temporary.
+            Please try refreshing the page or come back in a few moments.
         </p>
         <button class="btn btn-primary mt-5 not-prose"><a href="/">Home</a></button>
     </div>

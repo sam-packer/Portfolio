@@ -5,7 +5,7 @@ export const GET: APIRoute = async ({params}) => {
     const {slug} = params;
     const projects = await getCollection("projects");
 
-    const project = projects.find((project) => project.slug === slug);
+    const project = projects.find((project) => project.id === slug);
 
     if (!project) {
         return new Response(JSON.stringify({error: "Project not found"}), {
@@ -18,7 +18,6 @@ export const GET: APIRoute = async ({params}) => {
         id: project.id,
         data: project.data,
         body: project.body,
-        slug: project.slug,
     };
 
     return new Response(JSON.stringify(filteredProject), {

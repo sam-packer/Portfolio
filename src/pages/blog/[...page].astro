@@ -43,7 +43,9 @@ if (paginatedPosts.length === 0 && currentPage > 1) {
 }
 ---
 
-<BaseLayout title="Blog | Sam Packer" sideBarActiveItemID="blog">
+<BaseLayout title="Blog"
+            description="Read insightful articles by Sam Packer covering software development, tech trends, project experiences, and practical tips. Stay updated and enhance your skills through engaging, informative content."
+            sideBarActiveItemID="blog">
     <div class="flex mb-5 items-center">
         <div class="page-title !mb-0">Blog</div>
         <a data-event="RSS Button"
@@ -52,15 +54,18 @@ if (paginatedPosts.length === 0 && currentPage > 1) {
            class="mx-3"
            aria-label="RSS Feed"
            title="RSS Feed">
-        <RSS width={36} height={36} fill="currentColor" class="hover:fill-current hover:text-primary"/>
+            <RSS width={36} height={36} fill="currentColor" class="hover:fill-current hover:text-primary"/>
         </a>
     </div>
 
     <div class="card-spacing">
         {paginatedPosts.length === 0 ? (
-                <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-                    <p class="font-bold">Sorry!</p>
-                    <p>There are no blog posts to show at the moment. Check back later!</p>
+                <div class="bg-base-200 border border-error text-error rounded-xl p-6 text-sm shadow-md">
+                    <p class="font-semibold text-base">No posts available</p>
+                    <p class="mt-1 text-base-content">
+                        It looks like there aren’t any blog posts to show just yet. New content will be published
+                        soon, stay tuned!
+                    </p>
                 </div>
         ) : (
             paginatedPosts.map((post) => (

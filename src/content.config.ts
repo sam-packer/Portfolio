@@ -10,6 +10,9 @@ const blog = defineCollection({
         revDate: z.coerce.date().optional(),
         image: image().optional(),
         badge: z.string().optional(),
+        author: z.array(z.string()).refine(items => new Set(items).size === items.length, {
+            message: "tags must be unique",
+        }).optional(),
         tags: z.array(z.string()).refine(items => new Set(items).size === items.length, {
             message: "tags must be unique",
         }).optional()

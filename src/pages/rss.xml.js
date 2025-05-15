@@ -1,7 +1,6 @@
 import rss from "@astrojs/rss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import {SITE_TITLE, SITE_DESCRIPTION} from "../config";
 import {getCollection} from "astro:content";
 
 dayjs.extend(utc);
@@ -20,8 +19,8 @@ export async function GET(context) {
 
     return rss({
         stylesheet: "/rss/styles.xsl",
-        title: SITE_TITLE,
-        description: SITE_DESCRIPTION,
+        title: "RSS | Sam Packer",
+        description: "Read insightful articles by Sam Packer covering software development, tech trends, project experiences, and practical tips. Stay updated and enhance your skills through engaging, informative content.",
         site: import.meta.env.SITE,
         items: filteredPosts.map((post) => ({
             title: post.data.title,

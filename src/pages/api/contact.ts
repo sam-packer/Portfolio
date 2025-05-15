@@ -6,7 +6,7 @@ const debug = false;
 export const POST: APIRoute = async ({request}) => {
     if (!debug) {
         const origin = request.headers.get("Origin");
-        if (!origin || origin !== "https://sampacker.com") {
+        if (!origin || origin !== "https://www.sampacker.com") {
             return new Response(
                 JSON.stringify({message: "You are not allowed to make requests to this endpoint from the specified origin."}),
                 {
@@ -127,7 +127,7 @@ export const OPTIONS: APIRoute = ({request}) => {
     if (!debug) {
         const origin = request.headers.get("Origin");
 
-        if (!origin || origin !== "https://sampacker.com") {
+        if (!origin || origin !== "https://www.sampacker.com") {
             return new Response(null, {status: 403});
         }
     }
@@ -142,5 +142,5 @@ export const OPTIONS: APIRoute = ({request}) => {
 };
 
 export async function GET({ redirect }) {
-    return redirect("https://sampacker.com", 303);
+    return redirect("https://www.sampacker.com", 303);
 }

@@ -25,7 +25,6 @@ const {title, description, image = '/profile.webp', ogType = 'website'} = Astro.
         src="https://1742503883.sampacker.com/js/script.outbound-links.tagged-events.js"/>
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
 <meta name="title" content={title}/>
 <meta name="description" content={description}/>
 
@@ -37,6 +36,7 @@ const {title, description, image = '/profile.webp', ogType = 'website'} = Astro.
 <meta property="og:image" content={new URL(image, Astro.url)}/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Sam Packer"/>
+<meta property="og:logo" content="/favicon.svg" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image"/>

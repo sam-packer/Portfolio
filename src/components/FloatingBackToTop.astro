@@ -13,7 +13,7 @@ import Chevron from "../assets/icons/chevron.svg";
 <button id="back-to-top" class="fixed bottom-8 right-8 btn btn-circle btn-xl
     transition duration-150 ease-in-out"
         onclick='window.scrollTo({top: 0, behavior: "smooth"});'>
-        <Chevron width={24} height={24} fill="currentColor"/>
+    <Chevron width={24} height={24} fill="currentColor"/>
 </button>
 
 <script>
@@ -43,15 +43,15 @@ import Chevron from "../assets/icons/chevron.svg";
             }
         }
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, {passive: true});
     }
 
     function init() {
         document.addEventListener('DOMContentLoaded', function () {
             setupBackToTopButton();
-        });
+        }, {passive: true});
     }
 
     init();
-    document.addEventListener('astro:after-swap', setupBackToTopButton);
+    document.addEventListener('astro:after-swap', setupBackToTopButton, {passive: true});
 </script>

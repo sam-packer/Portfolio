@@ -3,6 +3,7 @@ title: "Inside My Home Network: A Fun Look at My Setup"
 description: "A deep dive into my self-hosted network, balancing automation, security, and efficiency."
 pubDate: "2025-02-21T16:15:00Z"
 image: "../../assets/blog/Homelab.webp"
+author: [ "Sam Packer" ]
 tags: [ "System Administration", "Automation", "Virtualization" ]
 ---
 
