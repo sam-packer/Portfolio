@@ -1,7 +1,20 @@
 ---
-const today = new Date();
+const buildYear = new Date().getFullYear();
 ---
 
 <footer class="footer footer-horizontal footer-center block mb-5 pt-10 pb-2">
-        Copyright &copy; {today.getFullYear()} Sam Packer
+    <p class="inline-block">Copyright © <span id="year">{buildYear}</span> Sam Packer</p>
 </footer>
+
+<script is:inline>
+    /* if JS is enabled, replace the year at the server's build time with the year from the client
+    If JS isn't enabled, the user will see a mismatch of years until a new build after the new year
+    This is due to a mix of SSR and SSG within Astro. However, the majority of users have JS enabled,
+    so this is truly a small edge case for users without JS and only until a new build has been initiated
+    after the new year.
+     */
+    const el = document.getElementById('year');
+    if (el) {
+        el.textContent = new Date().getFullYear().toString();
+    }
+</script>

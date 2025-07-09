@@ -1,33 +1,37 @@
-<script type="module" astro:page-load>
+<script is:inline type="module">
     function attachEventListeners() {
-        document.querySelectorAll("[data-event]").forEach((element) => {
-            if (!(element instanceof HTMLElement)) return;
-            if (element.dataset.tracked === "true") return;
+        document.querySelectorAll("[data-event]").forEach((el) => {
+            if (!(el instanceof HTMLElement)) return;
+            if (el.dataset.tracked === "true") return;
 
-            element.dataset.tracked = "true";
-
-            element.addEventListener("click", () => {
-                const eventName = element.getAttribute("data-event");
+            el.dataset.tracked = "true";
+            el.addEventListener("click", () => {
+                const eventName = el.getAttribute("data-event");
                 if (window.plausible && eventName) {
                     window.plausible(eventName);
                 }
-            }, {passive: true});
+            }, { passive: true });
         });
     }
 
-    attachEventListeners();
+    function initPlausibleTracking() {
+        attachEventListeners();
 
-    // Setup a debounced MutationObserver
-    let debounceTimeout = null;
+        // Only set up the observer a single time:
+        if (window.__plausibleObserverInstalled) return;
+        window.__plausibleObserverInstalled = true;
 
-    const observer = new MutationObserver(() => {
-        if (debounceTimeout) {
+        let debounceTimeout = null;
+        const observer = new MutationObserver(() => {
             clearTimeout(debounceTimeout);
-        }
-        debounceTimeout = setTimeout(() => {
-            attachEventListeners();
-        }, 100);
-    });
+            debounceTimeout = setTimeout(attachEventListeners, 100);
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
 
-    observer.observe(document.body, {childList: true, subtree: true});
+    // For “classic” full-page loads:
+    document.addEventListener("DOMContentLoaded", initPlausibleTracking);
+
+    // For Astro View-Transitions / ClientRouter soft-loads:
+    document.addEventListener("astro:page-load", initPlausibleTracking);
 </script>

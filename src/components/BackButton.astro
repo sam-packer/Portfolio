@@ -4,7 +4,7 @@ import Arrow from "../assets/icons/back.svg";
 const {href = "/"} = Astro.props;
 ---
 
-<a id="back-button" class="no-underline flex items-center space-x-2" href={href}
+<a id="back-button" class="no-underline flex items-center space-x-2 hover:text-primary" href={href}
    onclick="if(history.length > 1){history.back(); return false;}">
     <Arrow width={32} height={32} fill="currentColor"/>
     <span>Back</span>

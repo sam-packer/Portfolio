@@ -3,10 +3,18 @@ import {getSecret} from "astro:env/server";
 
 const debug = false;
 
+const allowedOrigins = [
+    "https://sampacker.com",
+    "https://1.sampacker.com",
+    "https://2.sampacker.com",
+];
+
+const isOriginAllowed = (origin: string | null) => origin ? allowedOrigins.includes(origin) : false;
+
 export const POST: APIRoute = async ({request}) => {
     if (!debug) {
         const origin = request.headers.get("Origin");
-        if (!origin || origin !== "https://www.sampacker.com") {
+        if (!isOriginAllowed(origin)) {
             return new Response(
                 JSON.stringify({message: "You are not allowed to make requests to this endpoint from the specified origin."}),
                 {
@@ -127,7 +135,7 @@ export const OPTIONS: APIRoute = ({request}) => {
     if (!debug) {
         const origin = request.headers.get("Origin");
 
-        if (!origin || origin !== "https://www.sampacker.com") {
+        if (!isOriginAllowed(origin)) {
             return new Response(null, {status: 403});
         }
     }
@@ -141,6 +149,6 @@ export const OPTIONS: APIRoute = ({request}) => {
     });
 };
 
-export async function GET({ redirect }) {
-    return redirect("https://www.sampacker.com", 303);
+export async function GET({redirect}) {
+    return redirect("https://sampacker.com", 303);
 }

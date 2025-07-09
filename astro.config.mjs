@@ -1,6 +1,6 @@
 import {defineConfig} from 'astro/config';
 import mdx from '@astrojs/mdx';
-import netlify from '@astrojs/netlify';
+import node from '@astrojs/node';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import tailwindcss from "@tailwindcss/vite";
@@ -20,7 +20,7 @@ export default defineConfig({
         prefetchAll: true
     },
     output: 'server',
-    adapter: netlify({
-        cacheOnDemandPages: true,
+    adapter: node({
+        mode: 'standalone',
     }),
 });

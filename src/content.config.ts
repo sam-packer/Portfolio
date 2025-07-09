@@ -26,17 +26,19 @@ const blog = defineCollection({
         )
 });
 
-const popups = defineCollection({
-    loader: glob({pattern: '**/[^_]*.{md,mdx}', base: "./src/content/popups"}),
+const alerts = defineCollection({
+    loader: glob({pattern: '**/[^_]*.{md,mdx}', base: "./src/content/alerts"}),
     schema: z.object({
         id: z.string(),
         title: z.string(),
-        link: z.string().url(),
-        linkText: z.string(),
+        link: z.string().url().optional(),
+        linkText: z.string().optional(),
         eventDate: z.coerce.date().optional(),
         location: z.string().optional(),
         startDate: z.coerce.date(),
         endDate: z.coerce.date(),
+        color: z.enum(["info", "success", "warning", "error"]).optional(),
+        icon: z.enum(["info", "check", "alert", "error"]).optional(),
     })
         .refine(
             (data) => data.startDate <= data.endDate,
@@ -64,4 +66,4 @@ const projects = defineCollection({
     })
 });
 
-export const collections = {blog, popups, projects};
+export const collections = {blog, alerts, projects};

@@ -9,15 +9,15 @@ export const prerender = true;
 
 export const GET: APIRoute = async () => {
     const now = dayjs().utc();
-    const popups = (await getCollection("popups")).filter(popup => {
-        const startDate = dayjs(popup.data.startDate).utc();
-        const endDate = dayjs(popup.data.endDate).utc();
+    const alerts = (await getCollection("alerts")).filter(alert => {
+        const startDate = dayjs(alert.data.startDate).utc();
+        const endDate = dayjs(alert.data.endDate).utc();
         return startDate.isBefore(now, "second") && endDate.isAfter(now, "second");
     });
 
-    const filteredData = popups.map((popup) => ({
-        data: popup.data,
-        rendered: popup.rendered?.html ?? "",
+    const filteredData = alerts.map((alert) => ({
+        data: alert.data,
+        rendered: alert.rendered?.html ?? "",
     }));
 
     return new Response(JSON.stringify(filteredData), {
