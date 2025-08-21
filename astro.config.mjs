@@ -7,7 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://www.sampacker.com',
+    site: 'https://sampacker.com',
     integrations: [mdx(), sitemap(), svelte()],
     vite: {
         plugins: [tailwindcss()],

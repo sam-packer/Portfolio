@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://sampacker.com/sitemap-index.xml

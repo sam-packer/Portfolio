@@ -3,7 +3,7 @@ const {project, href, target = "_self", referrer} = Astro.props;
 import {Image} from "astro:assets";
 ---
 
-<div class="card card-border clickable">
+<div class="card card-border hoverable clickable">
     <a href={href} target={target} aria-label={project.data.title}
        data-event={referrer === "home" ? "Project Card From Front Page" : "Project Card From Projects Page"}>
         <div class="hero-content flex-col md:flex-row">

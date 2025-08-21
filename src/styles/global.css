@@ -27,9 +27,14 @@
     @apply rounded-lg btn-soft;
 }
 
-/* Signals a card or collapse class is clickable */
+/* Base classes for a card */
+.hoverable {
+    @apply hover:shadow-md hover:dark:shadow-xl transition ease-in-out
+}
+
+/* Scale it up a bit to signal it's clickable */
 .clickable {
-    @apply hover:shadow-md hover:dark:shadow-xl transition ease-in-out hover:scale-[102%]
+    @apply hover:scale-[102%]
 }
 
 /* Custom card properties */

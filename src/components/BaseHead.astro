@@ -10,6 +10,8 @@ export interface Props {
     ogType?: string;
 }
 
+const canonicalUrl = Astro.site.origin + Astro.url.pathname;
+
 const {title, description, image = '/profile.webp', ogType = 'website'} = Astro.props;
 ---
 
@@ -17,6 +19,7 @@ const {title, description, image = '/profile.webp', ogType = 'website'} = Astro.
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href={canonicalUrl} />
 <meta name="generator" content={Astro.generator}/>
 
 <!-- Scripts -->

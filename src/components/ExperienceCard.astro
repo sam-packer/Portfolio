@@ -1,16 +1,38 @@
 ---
-const {title, subtitle} = Astro.props;
+interface Props {
+    title: string;
+    subtitle?: string;
+    open?: boolean;
+    ariaLabel?: string;
+}
+
+const {title, subtitle, open = false, ariaLabel} = Astro.props;
+
+const hasContent = Astro.slots.has('default');
 ---
 
-<div class="collapse-wrapper clickable">
+{!hasContent ? (
+<div class="collapse-wrapper hoverable">
+    <div class="p-4">
+        <p class="text-xl font-semibold">{title}</p>
+        {subtitle && <p class="text-md text-base-content/70">{subtitle}</p>}
+    </div>
+</div>
+    ) : (
+<div class="collapse-wrapper hoverable clickable">
     <div class="collapse collapse-arrow">
-        <input type="checkbox" aria-label={title}/>
+        <input
+                type="checkbox"
+                aria-label={ariaLabel ?? title}
+                {...(open ? { checked: true } : {})}
+        />
         <div class="collapse-title">
             <p class="text-xl font-semibold">{title}</p>
-            <p class="text-md text-base-content/70">{subtitle}</p>
+            {subtitle && <p class="text-md text-base-content/70">{subtitle}</p>}
         </div>
         <div class="collapse-content text-sm">
             <slot/>
         </div>
     </div>
 </div>
+    )}
